@@ -1,0 +1,109 @@
+Tabela: FORMULARIO DE PEDIDOS
+
+Número do pedido
+Prazo de Entrega
+Data do Pedido
+Nome do Cliente
+CGC
+Inscrição Estadual
+Código do Vendedor
+Nome do Vendedor
+Código do Produto
+Unidade
+Quantidade do Produto
+Descrição  do Produto
+Valor unitário do produto
+Valor total
+
+(*) Atributos que se repetem no documento
+
+
+PEDIDO
+
+Número do pedido (PK)
+Prazo de Entrega
+Data do Pedido
+Nome do Cliente
+CGC
+Inscrição Estadual
+Código do Vendedor
+Nome do Vendedor
+
+
+ITEM DE PEDIDO
+
+Número do pedido (FK) (PK)
+Código do Produto(PK)
+Unidade
+Quantidade do Produto
+Descrição  do Produto
+Valor unitário do produto
+Valor total
+
+
+
+------------------------
+
+
+PEDIDO
+
+Número do pedido (PK)
+Prazo de Entrega
+Data do Pedido
+Nome do Cliente
+CGC
+Inscrição Estadual
+Código do Vendedor
+Nome do Vendedor
+
+
+ITEM DE PEDIDO
+
+Número do pedido (FK) (PK)
+Quantidade do Produto
+Valor total
+
+PRODUTO
+
+Código do Produto(PK)
+Unidade
+Descrição  do Produto
+Valor unitário
+
+
+------------------------
+
+
+PEDIDO
+
+Número do pedido (PK)
+Prazo de Entrega
+Data do Pedido
+
+
+ITEM DE PEDIDO
+
+Número do pedido (FK) (PK)
+Quantidade do Produto
+Valor total
+
+
+PRODUTO
+
+Código do Produto (PK)
+Unidade
+Descrição  do Produto
+Valor unitário
+
+
+VENDEDOR
+
+Código do Vendedor (PK)
+Nome do Vendedor 
+
+
+CLIENTE
+
+Nome do Cliente
+CGC (PK)
+Inscrição Estadual

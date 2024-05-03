@@ -1,0 +1,221 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1046{\fonttbl{\f0\fnil MS Sans Serif;}{\f1\fnil\fcharset0 MS Sans Serif;}}
+{\colortbl ;\red0\green0\blue255;\red0\green0\blue0;}
+\viewkind4\uc1\pard\cf1\b\f0\fs16 001 - Entidade: \cf2\b0 Ag\f1\'eancia\cf1\b 
+\par \cf0\b0\f0 | Campo           | Tipo de Dados | Chave Prim\f1\'e1ria | Not Null | Descri\'e7\'e3o                                  |
+\par |-----------------|---------------|----------------|----------|--------------------------------------------|
+\par | Num_Agencia     | INT           | Sim            | Sim      | Identificador \'fanico da ag\'eancia.            |
+\par | Contato         | VARCHAR(100)  | N\'e3o            | N\'e3o      | Informa\'e7\'f5es de contato da ag\'eancia.         |
+\par | Endereco        | VARCHAR(255)  | N\'e3o            | Sim      | Endere\'e7o f\'edsico da ag\'eancia.                |
+\par | Cidade          | VARCHAR(255)  | N\'e3o            | Sim      | Cidade onde a ag\'eancia est\'e1 situada.        |
+\par | Estado(UF)      | VARCHAR(2)    | N\'e3o            | Sim      | Unidade Federativa onde a ag\'eancia se localiza. |
+\par | Placa           | VARCHAR(8)    | N\'e3o            | Sim      | Placa do ve\'edculo vinculado \'e0 ag\'eancia.      |
+\par | Id_Funcionario  | VARCHAR(14)   | N\'e3o            | N\'e3o      | Identificador do funcion\'e1rio respons\'e1vel.  |
+\par  | \f0 
+\par \cf1\b 002 - Rela\f1\'e7\'e3o: \cf2\b0 Aluga\cf1\b 
+\par \cf0\b0\f0 | Campo             | Tipo de Dados | Chave Prim\f1\'e1ria | Not Null | Descri\'e7\'e3o                          |
+\par |-------------------|---------------|----------------|----------|------------------------------------|
+\par | Data_Entrega      | DATE          | N\'e3o            | Sim      | Data de entrega do carro alugado.  |
+\par | Data_Retirada     | DATE          | N\'e3o            | Sim      | Data de retirada do carro alugado. |
+\par | Id_locacao        | INT           | Sim            | Sim      | Identificador \'fanico da loca\'e7\'e3o.    |
+\par | Valor_total       | MONEY         | N\'e3o            | Sim      | Valor total da loca\'e7\'e3o.            |
+\par | Id_Cliente_PF     | VARCHAR(11)   | Sim            | Sim      | ID do cliente pessoa f\'edsica.       |
+\par | Placa             | VARCHAR(8)    | Sim            | Sim      | Placa do carro alugado.            |
+\par | CNPJ              | VARCHAR(11)   | Sim            | Sim      | CNPJ da empresa cliente.           |
+\par  \f0 
+\par \cf1\b 003 - Atributo: \cf2\b0 Ano\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 004 - Atributo: \cf2\b0 Avaliacao\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 005 - Atributo: \cf2\b0 CEP_Empresa\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 006 - Atributo: \cf2\b0 CNPJ\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 007 - Entidade: \cf2\b0 Cargos\cf1\b 
+\par \cf0\b0 | Campo          | Tipo de Dados | Chave Prim\f1\'e1ria | Not Null | Descri\'e7\'e3o                       |
+\par |----------------|---------------|----------------|----------|---------------------------------|
+\par | Cod_Cargo      | INT           | Sim            | Sim      | C\'f3digo identificador do cargo.  |
+\par | Salario        | MONEY         | N\'e3o            | N\'e3o      | Sal\'e1rio associado ao cargo.     |
+\par | Nome_cargo     | VARCHAR(100)  | N\'e3o            | N\'e3o      | Nome descritivo do cargo.       |
+\par | Id_Funcionario | VARCHAR(14)   | N\'e3o            | N\'e3o      | ID do funcion\'e1rio vinculado.    | \f0 
+\par \cf1\b 008 - Entidade: \cf2\b0 Carro\cf1\b 
+\par \cf0\b0 | Campo            | Tipo de Dados | Chave Prim\f1\'e1ria | Not Null | Descri\'e7\'e3o                          |
+\par |------------------|---------------|----------------|----------|------------------------------------|
+\par | Modelo           | VARCHAR(100)  | N\'e3o            | Sim      | Modelo do carro.                   |
+\par | Ano              | DATE          | N\'e3o            | Sim      | Ano de fabrica\'e7\'e3o do carro.        |
+\par | Marca            | VARCHAR(100)  | N\'e3o            | Sim      | Marca do carro.                    |
+\par | Placa            | VARCHAR(8)    | Sim            | Sim      | Placa de identifica\'e7\'e3o do carro.   |
+\par | Disponibilidade  | BOOLEAN       | N\'e3o            | N\'e3o      | Disponibilidade do carro para aluguel.| \f0 
+\par \cf1\b 009 - Atributo: \cf2\b0 Celular_Cliente\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 010 - Atributo: \cf2\b0 Cidade\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 011 - Atributo: \cf2\b0 Cidade_Cliente\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 012 - Entidade: \cf2\b0 Clientes PF\cf1\b 
+\par \cf0\b0 | Campo              | Tipo de Dados | Chave Prim\f1\'e1ria | Not Null | Descri\'e7\'e3o                          |
+\par |--------------------|---------------|----------------|----------|------------------------------------|
+\par | Estado_Cliente     | VARCHAR(20)   | N\'e3o            | N\'e3o      | Estado de resid\'eancia do cliente.   |
+\par | Email_Cliente      | VARCHAR(100)  | N\'e3o            | Sim      | E-mail de contato do cliente.      |
+\par | Nome_Cliente       | VARCHAR(255)  | N\'e3o            | Sim      | Nome do cliente pessoa f\'edsica.     |
+\par | Id_Cliente_PF      | VARCHAR(11)   | Sim            | Sim      | Identificador \'fanico do cliente PF. |
+\par | Sobrenome_Cliente  | VARCHAR(255)  | N\'e3o            | Sim      | Sobrenome do cliente pessoa f\'edsica.|
+\par | Endereco_Cliente   | VARCHAR(255)  | N\'e3o            | Sim      | Endere\'e7o do cliente pessoa f\'edsica. |
+\par | Cidade_Cliente     | VARCHAR(255)  | N\'e3o            | N\'e3o      | Cidade de resid\'eancia do cliente.   |
+\par | Celular_Cliente    | VARCHAR(255)  | N\'e3o            | N\'e3o      | N\'famero de celular do cliente.      | \f0 
+\par \cf1\b 013 - Entidade: \cf2\b0 Clientes PJ\cf1\b 
+\par \cf0\b0 | Campo             | Tipo de Dados | Chave Prim\f1\'e1ria | Not Null | Descri\'e7\'e3o                          |
+\par |-------------------|---------------|----------------|----------|------------------------------------|
+\par | CNPJ              | VARCHAR(11)   | Sim            | Sim      | CNPJ da empresa cliente.           |
+\par | Telefone_Empresa  | VARCHAR(20)   | N\'e3o            | Sim      | Telefone de contato da empresa.    |
+\par | Email_Empresa     | VARCHAR(255)  | N\'e3o            | Sim      | E-mail de contato da empresa.      |
+\par | CEP_Empresa       | VARCHAR(10)   | N\'e3o            | Sim      | CEP da localiza\'e7\'e3o da empresa.     |
+\par | Nome_Empresa      | VARCHAR(255)  | N\'e3o            | Sim      | Nome da empresa cliente.           | \f0 
+\par \cf1\b 014 - Atributo: \cf2\b0 Cod_Cargo\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 015 - Atributo: \cf2\b0 Comentario\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 016 - Atributo: \cf2\b0 Comprovante\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 017 - Atributo: \cf2\b0 Contato\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 018 - Atributo: \cf2\b0 Custo\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 019 - Atributo: \cf2\b0 Data_Contratacao\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 020 - Atributo: \cf2\b0 Data_Entrega\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 021 - Atributo: \cf2\b0 Data_Feedback\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 022 - Atributo: \cf2\b0 Data_Manutencao\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 023 - Atributo: \cf2\b0 Data_Pagamento\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 024 - Atributo: \cf2\b0 Data_Retirada\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 025 - Atributo: \cf2\b0 Descricao\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 026 - Atributo: \cf2\b0 Disponibilidade\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 027 - Atributo: \cf2\b0 Email_Cliente\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 028 - Atributo: \cf2\b0 Email_Empresa\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 029 - Atributo: \cf2\b0 Endereco\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 030 - Atributo: \cf2\b0 Endereco_Cliente\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 031 - Rela\f1\'e7\'e3o: \cf2\b0 Envia\cf1\b 
+\par \cf0\b0\f0 | Campo             | Tipo de Dados | Chave Prim\f1\'e1ria | Not Null | Descri\'e7\'e3o                          |
+\par |-------------------|---------------|----------------|----------|------------------------------------|
+\par | Id_Feedback       | INT           | N\'e3o            | Sim      | ID do feedback enviado.            |
+\par | Id_Cliente_PF     | VARCHAR(11)   | N\'e3o            | Sim      | ID do cliente pessoa f\'edsica que enviou o feedback.|
+\par  \f0 
+\par \cf1\b 032 - Atributo: \cf2\b0 Estado(UF)\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 033 - Atributo: \cf2\b0 Estado_Cliente\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 034 - Entidade: \cf2\b0 Feedback\cf1\b 
+\par \cf0\b0 | Campo             | Tipo de Dados | Chave Prim\f1\'e1ria | Not Null | Descri\'e7\'e3o                          |
+\par |-------------------|---------------|----------------|----------|------------------------------------|
+\par | Id_Feedback       | INT           | Sim            | Sim      | Identificador \'fanico do feedback.   |
+\par | Avaliacao         | VARCHAR(5)    | N\'e3o            | Sim      | Avalia\'e7\'e3o dada pelo cliente.       |
+\par | Comentario        | VARCHAR(255)  | N\'e3o            | Sim      | Coment\'e1rio sobre o servi\'e7o.        |
+\par | Data_Feedback     | DATE          | N\'e3o            | Sim      | Data em que o feedback foi dado.   |
+\par  \f0 
+\par \cf1\b 035 - Atributo: \cf2\b0 Forma_Pagamento\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 036 - Entidade: \cf2\b0 Funcionarios\cf1\b 
+\par \cf0\b0 | Campo            | Tipo de Dados | Chave Prim\f1\'e1ria | Not Null | Descri\'e7\'e3o                         |
+\par |------------------|---------------|----------------|----------|-----------------------------------|
+\par | Id_Funcionario   | VARCHAR(14)   | Sim            | Sim      | Identificador \'fanico do funcion\'e1rio.|
+\par | Nome             | VARCHAR(255)  | N\'e3o            | Sim      | Nome do funcion\'e1rio.               |
+\par | Salario          | MONEY         | N\'e3o            | N\'e3o      | Sal\'e1rio do funcion\'e1rio.            |
+\par | Sobrenome        | VARCHAR(255)  | N\'e3o            | Sim      | Sobrenome do funcion\'e1rio.          |
+\par | Data_Contratacao | DATE          | N\'e3o            | Sim      | Data de contrata\'e7\'e3o do funcion\'e1rio.| \f0 
+\par \cf1\b 037 - Atributo: \cf2\b0 Id_Cliente_PF\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 038 - Atributo: \cf2\b0 Id_Comprovante\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 039 - Atributo: \cf2\b0 Id_Feedback\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 040 - Atributo: \cf2\b0 Id_Funcionario\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 041 - Atributo: \cf2\b0 Id_Manutencao\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 042 - Atributo: \cf2\b0 Id_Pagamento\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 043 - Atributo: \cf2\b0 Id_locacao\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 044 - Atributo: \cf2\b0 KM\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 045 - Entidade: \cf2\b0 Manutencao\cf1\b 
+\par \cf0\b0 | Campo             | Tipo de Dados | Chave Prim\f1\'e1ria | Not Null | Descri\'e7\'e3o                          |
+\par |-------------------|---------------|----------------|----------|------------------------------------|
+\par | Id_Manutencao     | INT           | Sim            | Sim      | Identificador \'fanico da manuten\'e7\'e3o. |
+\par | Tipo_Manutencao   | VARCHAR(255)  | N\'e3o            | Sim      | Tipo de manuten\'e7\'e3o realizada.      |
+\par | Descricao         | VARCHAR(255)  | N\'e3o            | N\'e3o      | Descri\'e7\'e3o da manuten\'e7\'e3o.           |
+\par | Data_Manutencao   | DATE          | N\'e3o            | Sim      | Data em que a manuten\'e7\'e3o foi realizada.|
+\par | Custo             | MONEY         | N\'e3o            | Sim      | Custo da manuten\'e7\'e3o.               |
+\par | KM                | DECIMAL       | N\'e3o            | Sim      | Quilometragem do carro na manuten\'e7\'e3o.|
+\par  \f0 
+\par \cf1\b 046 - Atributo: \cf2\b0 Marca\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 047 - Atributo: \cf2\b0 Modelo\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 048 - Atributo: \cf2\b0 Nome\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 049 - Atributo: \cf2\b0 Nome_Cliente\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 050 - Atributo: \cf2\b0 Nome_Empresa\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 051 - Atributo: \cf2\b0 Nome_cargo\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 052 - Atributo: \cf2\b0 Num_Agencia\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 053 - Entidade: \cf2\b0 Pagamento\cf1\b 
+\par \cf0\b0 | Campo             | Tipo de Dados | Chave Prim\f1\'e1ria | Not Null | Descri\'e7\'e3o                          |
+\par |-------------------|---------------|----------------|----------|------------------------------------|
+\par | Id_Pagamento      | INT           | Sim            | Sim      | Identificador \'fanico do pagamento.  |
+\par | Forma_Pagamento   | VARCHAR(255)  | N\'e3o            | Sim      | M\'e9todo de pagamento utilizado.     |
+\par | Status_Pagamento  | BOOLEAN       | N\'e3o            | N\'e3o      | Status do pagamento (pago ou n\'e3o). |
+\par | Data_Pagamento    | DATE          | N\'e3o            | Sim      | Data em que o pagamento foi realizado.| \f0 
+\par \cf1\b 054 - Rela\f1\'e7\'e3o: \cf2\b0 Pertence\cf1\b 
+\par \cf0\b0\f0 
+\par \cf1\b 055 - Atributo: \cf2\b0 Placa\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 056 - Rela\f1\'e7\'e3o: \cf2\b0 Possui\cf1\b 
+\par \cf0\b0\f0 
+\par \cf1\b 057 - Rela\f1\'e7\'e3o: \cf2\b0 Realiza\cf1\b 
+\par \cf0\b0\f0 | Campo             | Tipo de Dados | Chave Prim\f1\'e1ria | Not Null | Descri\'e7\'e3o                          |
+\par |-------------------|---------------|----------------|----------|------------------------------------|
+\par | Comprovante       | VARCHAR(255)  | N\'e3o            | N\'e3o      | Comprovante da transa\'e7\'e3o.          |
+\par | Id_Comprovante    | INT           | Sim            | Sim      | Identificador \'fanico do comprovante.|
+\par | Id_Cliente_PF     | VARCHAR(11)   | Sim            | Sim      | ID do cliente pessoa f\'edsica.       |
+\par | CNPJ              | VARCHAR(11)   | Sim            | Sim      | CNPJ da empresa cliente.           |
+\par | Id_Pagamento      | INT           | Sim            | Sim      | ID do pagamento relacionado.       | \f0 
+\par \cf1\b 058 - Rela\f1\'e7\'e3o: \cf2\b0 Recebe\cf1\b 
+\par \cf0\b0\f0 | Campo             | Tipo de Dados | Chave Prim\f1\'e1ria | Not Null | Descri\'e7\'e3o                          |
+\par |-------------------|---------------|----------------|----------|------------------------------------|
+\par | Placa             | VARCHAR(8)    | N\'e3o            | Sim      | Placa do carro que recebe manuten\'e7\'e3o.|
+\par | Id_Manutencao     | INT           | N\'e3o            | Sim      | ID da manuten\'e7\'e3o realizada.        | \f0 
+\par \cf1\b 059 - Atributo: \cf2\b0 Salario\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 060 - Atributo: \cf2\b0 Salario\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 061 - Atributo: \cf2\b0 Sobrenome\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 062 - Atributo: \cf2\b0 Sobrenome_Cliente\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 063 - Atributo: \cf2\b0 Status_Pagamento\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 064 - Atributo: \cf2\b0 Telefone_Empresa\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 065 - Atributo: \cf2\b0 Tipo_Manutencao\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 066 - Atributo: \cf2\b0 Valor_total\cf1\b 
+\par \cf0\b0 
+\par \cf1\b 067 - Rela\f1\'e7\'e3o: \cf2\b0 Verifica\cf1\b 
+\par \cf0\b0\f0 
+\par 
+\par }
+ 
