@@ -1,6 +1,8 @@
+-- Criando o DB
+CREATE DATABASE db_aluguel_carro;
 
 
-
+-- Criando as tabelas
 CREATE TABLE Agencia (
 Contato VARCHAR(100) NOT NULL,
 Num_Agencia INT NOT NULL PRIMARY KEY,
@@ -110,8 +112,8 @@ Id_Pagamento INT NOT NULL,
 PRIMARY KEY(Id_Comprovante,Id_Cliente_PF,CNPJ,Id_Pagamento)
 );
 
-ALTER TABLE Agência ADD FOREIGN KEY(Id_Funcionario) REFERENCES Funcionarios (Id_Funcionario);
-ALTER TABLE Agência ADD FOREIGN KEY(Placa) REFERENCES Carro (Placa);
+ALTER TABLE Agencia ADD FOREIGN KEY(Id_Funcionario) REFERENCES Funcionarios (Id_Funcionario);
+ALTER TABLE Agencia ADD FOREIGN KEY(Placa) REFERENCES Carro (Placa);
 ALTER TABLE Cargos ADD FOREIGN KEY(Id_Funcionario) REFERENCES Funcionarios (Id_Funcionario);
 
 
@@ -524,7 +526,7 @@ VALUES
 ('XYZ142', 23, 43, '56789012345', 23);
 
 
-
+ALTER TABLE feedback ALTER COLUMN avaliacao TYPE VARCHAR(30);
 
 
 
@@ -534,15 +536,126 @@ VALUES
         -- 1.0
             SELECT * FROM carro;
 
-        --2.0
-            SELECT clientes_pf.nome_cliente, aluga.data_retirada FROM clientes_pf INNER JOIN aluga ON aluga.id_locacao = clientes_pf.id_cliente_pf WHERE aluga.data_retirada BETWEEN '2024-01-01' AND '2024-04-30';
+        --1.1
+            SELECT clientes_pf.nome_cliente, aluga.data_retirada FROM clientes_pf INNER JOIN aluga ON aluga.id_cliente_pf = clientes_pf.id_cliente_pf WHERE aluga.data_retirada BETWEEN '2024-02-01' AND '2024-05-30';
+            SELECT * FROM clientes_pf;
+            SELECT * FROM aluga;
+        
+        --1.2
+            SELECT funcionarios.nome, agencia.num_agencia FROM funcionarios INNER JOIN agencia ON agencia.id_funcionario = funcionarios.id_funcionario WHERE agencia.num_agencia = 1234;
+            SELECT * FROM funcionarios;
+            SELECT * FROM agencia;
 
-        
+        --1.3
+            SELECT pagamento.id_pagamento, CONCAT(clientes_pf.nome_cliente,'',clientes_pf.sobrenome_cliente) AS nome_cliente, pagamento.forma_pagamento FROM pagamento INNER JOIN clientes_pf ON clientes_pf.id_cliente_pf = pagamento.id_pagamento WHERE id_cliente_pf = 1; 
+
+            SELECT * FROM clientes_pf;
+            SELECT * FROM pagamento;
+
+
+        --1.4
+            SELECT recebe.placa FROM recebe
+            INNER JOIN manutencao ON recebe.id_manutencao = manutencao.id_manutencao WHERE manutencao.tipo_manutencao = 'Corretiva';
+
+
+            SELECT * FROM manutencao;
+            SELECT * FROM carro;
+            SELECT * FROM recebe;
+
+        --1.5
+            SELECT cpf.Nome_Cliente, COUNT(*) AS Total_Alugueis FROM aluga al
+            INNER JOIN Clientes_pf cpf ON al.Id_Cliente_PF = cpf.Id_Cliente_PF
+            GROUP BY cpf.Nome_Cliente HAVING COUNT(*) > 1;
+
+
+            SELECT * FROM cliente_pf;
+            SELECT * FROM aluga;
+            SELECT * FROM recebe;
+
+        -- 1.6
+            ALTER TABLE funcionarios ADD COLUMN cidade_natal VARCHAR(255);
+
+UPDATE funcionarios
+SET cidade_natal = CASE
+    WHEN id_funcionario = 1 THEN 'São Paulo'
+    WHEN id_funcionario = 2 THEN 'Rio de Janeiro'
+    WHEN id_funcionario = 3 THEN 'Belo Horizonte'
+    WHEN id_funcionario = 4 THEN 'Salvador'
+    WHEN id_funcionario = 5 THEN 'Brasília'
+    WHEN id_funcionario = 6 THEN 'Fortaleza'
+    WHEN id_funcionario = 7 THEN 'Manaus'
+    WHEN id_funcionario = 8 THEN 'Curitiba'
+    WHEN id_funcionario = 9 THEN 'Recife'
+    WHEN id_funcionario = 10 THEN 'Goiânia'
+    WHEN id_funcionario = 11 THEN 'Belém'
+    WHEN id_funcionario = 12 THEN 'Porto Alegre'
+    WHEN id_funcionario = 13 THEN 'São Luís'
+    WHEN id_funcionario = 14 THEN 'Campinas'
+    WHEN id_funcionario = 15 THEN 'Guarulhos'
+    WHEN id_funcionario = 16 THEN 'Santo André'
+    WHEN id_funcionario = 17 THEN 'Duque de Caxias'
+    WHEN id_funcionario = 18 THEN 'Nova Iguaçu'
+    WHEN id_funcionario = 19 THEN 'São Bernardo do Campo'
+    WHEN id_funcionario = 20 THEN 'Maceió'
+    WHEN id_funcionario = 21 THEN 'São Gonçalo'
+    WHEN id_funcionario = 22 THEN 'Feira de Santana'
+    WHEN id_funcionario = 23 THEN 'Ribeirão Preto'
+END;
+
+SELECT DISTINCT c.*
+FROM carro c
+JOIN aluga a ON c.placa = a.placa
+JOIN clientes_pf cl ON a.id_cliente_pf = cl.id_cliente_pf
+JOIN funcionarios f ON cl.cidade_cliente = f.cidade_natal
+WHERE f.id_funcionario = 3;
+
+
+            SELECT * FROM funcionarios;
+            SELECT * FROM carro;
+            SELECT * FROM aluga;
+            SELECT * FROM clientes_pf;
+
+    -- 2 UPDATE
+        -- 2.0
+           UPDATE aluga SET valor_total = 400 
+            WHERE aluga.placa IN (SELECT carro.placa FROM carro WHERE carro.marca = 'Toyota');
+
+        --2.1
+            UPDATE aluga SET data_entrega = '2024-04-02'
+            WHERE aluga.placa = '3' AND aluga.id_cliente_pf = '25';
+
+        --2.2
+            UPDATE carro SET disponibilidade = 'Disponivel'
+            WHERE carro.placa = 'HIJ2930';
+
+            SELECT * FROM aluga;
+
+    --3 ALTER TABLE
         --3.0
-            SELECT funcionarios.nome, agencia.num_agencia FROM funcionarios INNER JOIN agencia ON agencia.num_agencia = funcionarios.id_funcionario WHERE agencia.num_agencia = 5;
-        
+            ALTER TABLE Carro 
+            ADD COLUMN status_disponibilidade VARCHAR(50);
+        --3.1
+            ALTER TABLE Pagamento
+            ALTER COLUMN valor DECIMAL(10,2);
+        --3.2
+            ALTER TABLE Clientes_pf
+            DROP COLUMN telefone;
+    
+    --4 JOIN
         --4.0
-            SELECT pagamento.id_pagamento, CONCAT(clientes_pf.nome_cliente,'',clientes_pf.sobrenome_cliente) AS nome_cliente FROM pagamento INNER JOIN clientes_pf ON clientes_pf.id_cliente_pf = pagamento.id_pagamento WHERE id_cliente_pf = 5; 
+            SELECT Clientes_pf.nome_cliente AS nome_cliente, Carro.modelo, aluga.data_retirada FROM aluga
+            JOIN Clientes_pf ON aluga.id_cliente_pf = Clientes_pf.id_cliente_pf
+            JOIN Carro ON aluga.placa = Carro.placa;
+
+        --4.1
+            SELECT Clientes_pf.nome_cliente AS nome_cliente, Pagamento.status_pagamento FROM Pagamento
+            JOIN Clientes_pf ON Pagamento.id_pagamento = Clientes_pf.id_cliente_pf;
+
+        --4.2
+            SELECT Clientes_pf.nome_cliente AS nome_cliente, Carro.modelo, Feedback.comentario FROM Feedback
+            JOIN aluga ON Feedback.id_feedback = aluga.id_locacao
+            JOIN Clientes_pf ON aluga.id_cliente_pf = Clientes_pf.id_cliente_pf
+            JOIN Carro ON aluga.placa = Carro.placa;
 
 
 
