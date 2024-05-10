@@ -657,5 +657,7 @@ WHERE f.id_funcionario = 3;
             JOIN Clientes_pf ON aluga.id_cliente_pf = Clientes_pf.id_cliente_pf
             JOIN Carro ON aluga.placa = Carro.placa;
 
+    --5 
+
 
 

@@ -1,0 +1,121 @@
+/* Reset de estilos padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo da barra de navegação */
+.navbar {
+    background-color: #000080;
+    /* Azul escuro */
+    color: #ffffff;
+    height: 15vh;
+    width: 100%;
+
+}
+
+.container-princi {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#logo {
+    height: 10vh;
+    /* Ajuste conforme o tamanho do seu logo */
+}
+
+.input-princ {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 50%;
+}
+
+.input-princ input {
+    border-radius: 50px;
+    height: 5vh;
+    width: 100%;
+    text-align: justify;
+    border: none;
+    color: black;
+    margin: 5px;
+    padding: 4px;
+
+
+
+}
+
+
+img {
+    height: 8vh;
+}
+
+
+
+
+
+/* Botões de cadastro e aluguel */
+.btns {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.btns img {
+    height: 5vh;
+    margin: 5px;
+}
+
+.btn-cadast {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn-alugar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+
+
+
+
+
+
+
+/* Links das categorias de carros */
+.containerlinks {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-around;
+    padding: 1%;
+}
+
+.iconsCar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.iconsCar a {
+    color: black;
+    text-decoration: none;
+    font-size: 2vh;
+}
+
+.iconsCar img {
+    height: 5vh;
+}
