@@ -628,7 +628,7 @@ WHERE f.id_funcionario = 3;
             UPDATE carro SET disponibilidade = 'Disponivel'
             WHERE carro.placa = 'HIJ2930';
 
-            SELECT * FROM aluga;
+           
 
     --3 ALTER TABLE
         --3.0
@@ -657,7 +657,138 @@ WHERE f.id_funcionario = 3;
             JOIN Clientes_pf ON aluga.id_cliente_pf = Clientes_pf.id_cliente_pf
             JOIN Carro ON aluga.placa = Carro.placa;
 
-    --5 
+    --5 INNER JOIN 
+        --5.0
+        SELECT Carro.modelo, Carro.placa FROM Carro 
+        JOIN Agencia ON Carro.placa = Agencia.placa
+        WHERE Agencia.num_agencia = '6789' AND Carro.disponibilidade = 'Disponível';
+
+    --5.1
+        SELECT Aluga.*, clientes_pf.nome_cliente AS nome_cliente FROM Aluga
+        JOIN clientes_pf ON Aluga.id_cliente_pf = clientes_pf.id_cliente_pf
+        WHERE clientes_pf.cidade_cliente = 'São Paulo'; 
+
+    --5.2
+        SELECT DISTINCT Funcionarios.nome FROM funcionarios
+        JOIN Agencia ON funcionarios.id_funcionario = agencia.id_funcionario
+        JOIN Carro ON agencia.placa = carro.placa WHERE Carro.marca = 'Toyota';
+
+    --6 lEFT JOIN 
+        --6.0
+            SELECT carro.modelo, carro.modelo, feedback.avaliacao, feedback.comentario From carro
+            LEFT JOIN carro.placa = feedback.id_feedback
+
+        -- 6.1
+            SELECT clientes_pf.*, Aluga.placa FROM clientes_pf
+            LEFT JOIN Aluga ON clientes_pf.id_cliente_pf = aluga.id_cliente_pf;
+
+        --6.2
+            SELECT agencia.num_agencia, count(carro.placa) FROM agencia
+            LEFT JOIN carro ON agencia.placa = carro.placa AND carro.disponibilidade = 'Disponível' 
+            GROUP BY agencia.num_agencia;
+
+    --7 RIGHT JOIN --As atividades nesta pagina não  fazem sentido, pois se quero exibir TODOS os carros incluindo alguns, ele ainda estara dentro de TODOS 
+        --7.1
+            SELECT feedback.avaliacao, feedback.comentario from feedback;
+        
+        --7.2
+            SELECT carro.marca, carro.modelo FROM carro;
+        
+        --7.3
+            SELECT manutencao.descricao, manutencao.tipo_manutencao FROM manutencao;
+
+    --8 Subconsultas (Subqueries)
+        --8.1
+            SELECT aluga.id_cliente_pf, COUNT(*) FROM aluga GROUP BY aluga.id_cliente_pf HAVING count(*)>1; 
+        --8.2
+            SELECT Carro.modelo,COUNT(*) AS total_alugueis FROM Aluga
+            JOIN Feedback ON Aluga.id_locacao = Feedback.id_feedback
+            JOIN Carro ON Aluga.placa = Carro.placa
+            WHERE Feedback.avaliacao = 'Bom'
+            GROUP BY Carro.modelo
+            ORDER BY total_alugueis DESC LIMIT 1;
+    --9 Agregações
+        -- 9.0.1
+            SELECT COUNT(pagamento.id_pagamento)  AS vendas_1_mês FROM pagamento WHERE pagamento.data_pagamento BETWEEN '2024-05-01' AND  '2024-05-30';
+
+        --9.0.2
+            SELECT AVG(manutencao.data_manutencao) AS media_dias_manutencao FROM aluga
+            JOIN carro ON aluga.placa = carro.placa
+            JOIN recebe ON carro.placa = recebe.placa
+            JOIN manutencao ON recebe.id_manutencao = manutencao.id_manutencao
+            WHERE manutencao.status = 'Concluída';
+
+        --9.1.0
+            SELECT COUNT(carro.placa) FROM carro;
+
+        --9.1.1
+            SELECT SUM(aluga.valor_total) FROM aluga where aluga.data_entrega BETWEEN '2024-01-01' AND '2024-06-30';
+
+        --9.1.2
+            SELECT AVG(aluga.valor_total) FROM aluga;
+
+        --9.2.0
+            SELECT modelo, COUNT(*) AS total_carros FROM carro
+            GROUP BY modelo;
+
+        --9.2.1
+            SELECT MONTH(aluga.data_retirada) AS mes, YEAR(data_inicio) AS ano, SUM(valor_total) AS total_alugueis FROM aluga
+            GROUP BY mes, ano;
+
+        --9.2.2
+            SELECT pagamento.forma_pagamento, SUM(aluga.valor_total) AS total_pagamentos FROM pagamento
+            INNER JOIN realiza ON pagamento.id_pagamento = realiza.id_pagamento
+            INNER JOIN aluga ON realiza.id_pagamento = aluga.id_locacao
+            GROUP BY pagamento.forma_pagamento;
+
+        --9.3.0
+            SELECT COUNT(*) AS total_carros_disponiveis FROM carro
+            INNER JOIN agencia ON carro.placa = agencia.placa
+            WHERE agencia.num_agencia = '1234';
+
+        --9.3.1
+            SELECT SUM(valor_total) AS total_arrecadado FROM aluga
+            INNER JOIN clientes_pf ON aluga.id_cliente_pf = clientes_pf.id_cliente_pf
+            WHERE clientes_pf.cidade_cliente = 'São Paulo';
+
+        --9.3.2
+            SELECT AVG(DATEDIFF(aluga.data_retirada, aluga.data_entrega)) AS media_dias_alugados FROM aluga
+            INNER JOIN carro ON aluga.placa = carro.placa
+            WHERE carro.marca = 'Toyota';
+
+        --9.4.0
+            SELECT COUNT(*) AS total_alugueis_excedidos FROM aluga
+            WHERE aluga.valor_total > 100.00;
+        
+        --9.4.1
+            SELECT SUM(aluga.valor_total) AS total_pagamentos FROM aluga
+            WHERE clientes_pf.id_cliente_pf IN (
+                SELECT aluga.id_cliente_pf FROM aluga
+                GROUP BY aluga.id_cliente_pf
+                HAVING COUNT(*) > 1
+            );
+        
+        --9.4.2
+            SELECT AVG(manutencao.data_manutencao) AS media_dias_manutencao FROM manutencao
+            WHERE custo > custo_limite;
+
+
+    -- 10 INDEXAÇÃO
+        
+        -- Indexar em banco de dados é otimizar a busca de um determinado valor. Basicamente se temos um banco de dados de 20000 linhas e queremos encontrar um valor especifico usamos : SELECT * FROM xxx; Porem esta query demora, então para otimizar esta busca usamos o INDEX para buscar a informaçõa apenas em um determinado intervalo
+
+        --Comparação de desempenho:
+
+        -- Consultas em tabelas indexadas vs. não indexadas: Quando uma consulta é executada em uma tabela indexada, o banco de dados pode usar o índice para localizar rapidamente as linhas relevantes, o que resulta em tempos de resposta mais rápidos para a consulta. Por outro lado, em uma tabela não indexada, o banco de dados pode precisar percorrer todas as linhas da tabela para encontrar os resultados desejados, especialmente em consultas que envolvem filtragem, classificação ou junção de grandes conjuntos de dados. Isso pode levar a tempos de resposta mais longos, especialmente em tabelas com muitas linhas.
+
+
+
+
+
+
+
+
+
 
 
 
