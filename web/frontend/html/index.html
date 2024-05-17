@@ -4,63 +4,89 @@
 <head>
     <meta charset="UTF-8">
     <title>LOC HERE - Aluguel de Carros</title>
-    <link rel="stylesheet" href="../css/style-header.css">
+    <link rel="stylesheet" href="../css/style-index.css">
 </head>
 
 <body>
-
-    <div class="navbar">
-        <div class="container-princi">
-            <img src="../assets/img/banners/logo.png" alt="Logo LOC HERE" id="logo">
-
-
-            <div class="input-princ">
-                <img src="../assets/img/banners/logo.png" alt="">
-                <input type="text" placeholder="Pesquise...">
-            </div>
-
-            <div class="btns">
-                <div class="btn-cadast">
-                    <img src="../assets/img/banners/logo.png" alt="Cadastre-se">
-                    <a>Cadastre-se</a>
-                </div>
-                <div class="btn-alugar">
-                    <img src="../assets/img/banners/logo.png" alt="AlugueCarro">
-                    <a>Alugue aqui</a>
-                </div>
-            </div>
+    <div class="container-princi">
+        <div class="carrousel">
+            <img src="../assets/img/banners/logo.png" alt="">
+            <!-- Criar carrousel no GPT  -->
         </div>
 
-        <div class="containerlinks">
 
-            <div class="iconsCar">
-                <img src="../assets/img/banners/logo.png" alt="">
-                <a href="#">Hatchs</a>
+        <div class="container-in">
+            <div class="banner-pesqui">
+                <div class="titulo-pesqui">
+                    <h1>Faça seu orçamento</h1>
+                </div>
+                <div class="inputs-pesqui">
+                    <form action="" method="post">
+                        <div class="cidade-retirada">
+                            <h1>Cidade</h1>
+                            <input type="text" name="cidade" id="cidade">
+                        </div>
+                        <div class="data-retirada">
+                            <h1>Data-Retirada</h1>
+                            <input type="date" name="data-retirada" id="data-retirada">
+                        </div>
+                        <div class="data-entrega">
+                            <h1>Data-Entrega</h1>
+                            <input type="date" name="data-entrega" id="data-entrega">
+                        </div>
+                        <input type="submit" value="Buscar" id="enviar">
+                    </form>
+                </div>
             </div>
 
+            <div class="cards-promocao">
+                <div class="titulo-cards">
+                    <div class="titulo-linha">
+                        <h1>CARDS</h1>
+                        <img src="" alt="linha-fundo">
+                    </div>
+                </div>
+                <div class="cards-construcao">
+                    <a href=""> <!-- Tornar todo o card clicavel -->
+                        <div class="conteudo-cards">
+                            <img src="../assets/img/banners/logo.png" alt="img pegando 70% height">
+                            <div class="info-card">
+                                <h3>Descricao da promocao</h3>
+                                <input type="button" value="conferir-promocao">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="banner-avulso">
+                <img src="" alt="">
+            </div>
+            <div class="cards-mais-alug">
 
-            <div class="iconsCar">
-                <img src="../assets/img/banners/logo.png" alt="">
-                <a href="#">Sedãs</a>
+                <div class="titulo-cards">
+                    <div class="titulo-linha">
+                        <h1></h1>
+                        <img src="" alt="linha-fundo">
+                    </div>
+                </div>
+
+                <div class="cards-contrucao-mais-alug">
+                    <a href=""> <!-- Tornar todo o card clicavel -->
+                        <div class="conteudo-cards-mais-alug">
+                            <img src="" alt="img pegando 70% height">
+                            <div class="info-card-mais-alug">
+                                <h3>Descricao dos carros mais alugados</h3>
+                                <input type="button" value="conferir-mais-alug">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="btn-conferir-mais-alug">
+                <button>Conferir mais vendidos</button>
             </div>
 
-
-            <div class="iconsCar">
-                <img src="../assets/img/banners/logo.png" alt="">
-                <a href="#">Minivans</a>
-            </div>
-
-
-            <div class="iconsCar">
-                <img src="../assets/img/banners/logo.png" alt="">
-                <a href="#">Conversível</a>
-            </div>
-            <div class="iconsCar">
-                <img src="../assets/img/banners/logo.png" alt="">
-                <a href="#">Esportivo</a>
-            </div>
         </div>
-
     </div>
 
 </body>

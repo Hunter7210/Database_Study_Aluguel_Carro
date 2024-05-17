@@ -1,4 +1,4 @@
--- CREATE DATABASE db_locadora_carros;
+CREATE DATABASE db_locadora_carros;
 
 
 CREATE TABLE Cliente_PJ (
