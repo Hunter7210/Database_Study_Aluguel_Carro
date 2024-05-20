@@ -77,7 +77,8 @@
 <body>
     <div class="container">
         <h2>Cadastro de Clientes PF - Etapas</h2>
-        <form action="../../backend/Controller/cadas_cliente_pf.php" method="post" id="signupForm">
+        
+    <form action="../../../Controller/cadas_cliente_pf.php" method="post">
             <!-- Etapa 1 -->
             <div class="step active" id="step1">
 
@@ -134,7 +135,7 @@
 
                 <div class="button-group">
                     <button type="button" onclick="previousStep(2)">Etapa Anterior</button>
-                    <button type="submit">Cadastrar</button>
+                    <button type="submit" id="submit" name="submit">Cadastrar</button>
                 </div>
         </form>
     </div>

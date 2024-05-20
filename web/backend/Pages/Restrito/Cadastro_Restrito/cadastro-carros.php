@@ -6,6 +6,7 @@
 </head>
 <body>
     <h1>Cadastro de Carro</h1>
+    
     <form action="../../../Controller/cadas_carros.php" method="post">
         <label for="modelo">Modelo:</label>
         <input type="text" id="modelo" name="modelo" required><br><br>
