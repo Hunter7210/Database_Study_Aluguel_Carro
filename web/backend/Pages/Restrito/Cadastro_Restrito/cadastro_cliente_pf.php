@@ -71,14 +71,30 @@
         button:hover {
             background-color: #4cae4c;
         }
+
+        .container-result-sucess {
+            width: 100%;
+            background-color: #4cae4c;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container-result-failed {
+            width: 100%;
+            background-color: red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 
 <body>
+
     <div class="container">
         <h2>Cadastro de Clientes PF - Etapas</h2>
-        
-    <form action="../../../Controller/cadas_cliente_pf.php" method="post">
+        <form action="../../../Controller/cadas_cliente_pf.php" method="post">
             <!-- Etapa 1 -->
             <div class="step active" id="step1">
 
@@ -138,8 +154,30 @@
                     <button type="submit" id="submit" name="submit">Cadastrar</button>
                 </div>
         </form>
-    </div>
 
+
+
+    </div>
+    <?php
+    if (isset($_GET['status'])) {
+        if ($_GET['status'] == 'success') {
+            echo  '<br>
+                <div class="container-result-sucess">
+                    <h2>Cadastro realizado com sucesso</h2>
+                </div>';
+        } elseif ($_GET['status'] == 'email_exists') {
+            echo  '<br>
+                <div class="container-result-failed">
+                    <h2>Email ja existente, tente novamente</h2>
+                </div>';
+        } else {
+            echo  '<br>
+                <div class="container-result-failed">
+                    <h2>Erro ao cadastrar</h2>
+                </div>';
+        }
+    }
+    ?>
     <script>
         function nextStep(step) {
             var currentStep = document.querySelector('.step.active');
