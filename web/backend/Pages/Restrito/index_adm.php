@@ -8,6 +8,7 @@
 </head>
 
 <body>
+<h2>ESTE É O MEU INDEX DO ADM</h2>
     <form action="./index_adm.php" method="post">
         <input type="button"  value="Cadastro_Carros">
        

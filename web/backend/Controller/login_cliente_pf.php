@@ -58,8 +58,16 @@ if (isset($_POST['submit'])) {
                 exit();
             } elseif ($resultado_nivel == 2) {
                 print('Você é um usuario comum');
+                $url = "../Pages/index.php";
+                header('Location:' . $url);
+
+                exit();
             } else {
                 print('Você é um erro');
+                $url = "../Pages/index.php";
+                header('Location:' . $url);
+
+                exit();
             }
         } else {
             // Exibir mensagem de erro se o email ou senha estiverem incorretos
