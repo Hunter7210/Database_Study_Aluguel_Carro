@@ -57,6 +57,11 @@
         </tr>
         <!-- PHP code to fetch data from database and display -->
         <?php
+
+        session_start();
+        $result = $_SESSION['result_nivel'];
+
+
         include("../../../Connection/conexao_bd.php");
 
         try {
@@ -67,7 +72,6 @@
 
                 $stmt = $conexao->prepare($query);
                 $stmt->bindParam(':busca', $busca);
-
             } elseif (isset($_POST['submit_select'])) {
 
                 $busca_select = $_POST['pesquisa_select'];
@@ -78,7 +82,6 @@
 
                 $stmt = $conexao->prepare($query);
                 $stmt->bindParam(':pesquisa_select', $busca_select);
-
             } else {
                 $query = 'SELECT carros.*, aluga.data_entrega_aluga FROM carros INNER JOIN aluga ON carros.pk_placa_carros = aluga.fk_placa_carros';
                 $stmt = $conexao->query($query);
@@ -88,16 +91,18 @@
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 echo "<tr>";
-                    echo "<td>" . htmlspecialchars($row['modelo_carros']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['ano_carros']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['marca_carros']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['pk_placa_carros']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['modelo_carros']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['ano_carros']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['marca_carros']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['pk_placa_carros']) . "</td>";
 
                 if ($row['disponibilidade_carros'] == 'Disponível') {
                     echo "<td style='background-color:green; width:10%;'>Disponível</td>";
                 } elseif ($row['disponibilidade_carros'] == 'Indisponível') {
                     echo "<td style='background-color:red; width:10%;'>Indisponível</td>";
-                    echo "<td>" . htmlspecialchars($row['data_entrega_aluga']) . "</td>";
+                    if ($result == 1) {
+                        echo "<td>" . htmlspecialchars($row['data_entrega_aluga']) . "</td>";
+                    }
                 }
 
                 echo "</tr>";

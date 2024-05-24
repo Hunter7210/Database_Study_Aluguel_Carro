@@ -159,12 +159,29 @@ ALTER TABLE clientes_pj ALTER COLUMN senha_cliente_pj TYPE VARCHAR(255);
 
     CREATE TABLE administradores(
         pk_id_administradores SERIAL PRIMARY KEY,
-        cpf_administradores VARCHAR(14),
+        cpf_administradores VARCHAR(14) NOT NULL,
         --FOREIGN KEY 
         fk_nivel_acesso SERIAL,
 
-        FOREIGN KEY (fk_nivel_acesso) REFERENCES niveis_acesso (pk_nivel_acesso),
+        FOREIGN KEY (fk_nivel_acesso) REFERENCES niveis_acesso (pk_nivel_acesso)
     );
+
+
+    INSERT INTO administradores (cpf_administradores, fk_nivel_acesso) VALUES
+        ('123.456.789-00', 1),
+        ('987.654.321-00', 1),
+        ('111.222.333-44', 1);
+
+    SELECT * FROM administradores;
+    SELECT * FROM niveis_acesso;
+    SELECT * FROM clientes_pf;
+
+    ALTER TABLE administradores ADD COLUMN senha_administradores VARCHAR(30);
+
+    UPDATE administradores SET senha_administradores = 'senha321' WHERE cpf_administradores =  '123.456.789-00';
+    UPDATE administradores SET senha_administradores = 'senha123' WHERE cpf_administradores =  '987.654.321-00';
+    UPDATE administradores SET senha_administradores = 'senha213' WHERE cpf_administradores =  '111.222.333-44';
+
 
 
 
