@@ -1,6 +1,6 @@
 
 -- Criando o DB
-CREATE DATABASE db_locadora_carros;
+CREATE DATABASE db_locadora_carros_Heitor;
 
 -- Criando as tabelas
 CREATE TABLE agencias (
@@ -134,17 +134,50 @@ ALTER TABLE aluga ALTER COLUMN fk_cnpj_clientes_pj TYPE VARCHAR(18);
 ALTER TABLE realiza ALTER COLUMN fk_cnpj_clientes_pj TYPE VARCHAR(18); 
 ALTER TABLE clientes_pf ALTER COLUMN senha_cliente_pf TYPE VARCHAR(255); 
 ALTER TABLE clientes_pj ALTER COLUMN senha_cliente_pj TYPE VARCHAR(255); 
-ALTER TABLE clientes_pj RENAME senha_cliente_pf TO senha_cliente_pj; 
+
+
+
+-- ALTERAÇÃO 24/05/2024
+    CREATE TABLE niveis_acesso (
+        pk_nivel_acesso SERIAL PRIMARY KEY,
+        nivel VARCHAR(20)
+    )
+
+    INSERT INTO niveis_acesso (nivel) VALUES
+    ('Administrador'),
+    ('Usuário Comum'),
+    ('Moderador');
+
+
+    ALTER TABLE clientes_pf ADD COLUMN fk_nivel_acesso SERIAL;
+    
+    ALTER TABLE clientes_pf ADD FOREIGN KEY (fk_nivel_acesso) REFERENCES niveis_acesso (pk_nivel_acesso);
+
+    SELECT * FROM niveis_acesso;
+    SELECT * FROM clientes_pf;
+
+
+    CREATE TABLE administradores(
+        pk_id_administradores SERIAL PRIMARY KEY,
+        cpf_administradores VARCHAR(14),
+        --FOREIGN KEY 
+        fk_nivel_acesso SERIAL,
+
+        FOREIGN KEY (fk_nivel_acesso) REFERENCES niveis_acesso (pk_nivel_acesso),
+    );
+
+
+
 
 -- REALIZANDO O INSERTS
 
 -- Inserindo dados na tabela cargos
-INSERT INTO cargos (nome_cargos, salario_cargos) VALUES 
-('Gerente', 8000.00), 
-('Assistente', 3000.00), 
-('Analista', 5000.00), 
-('Desenvolvedor', 7000.00), 
-('Estagiário', 1500.00);
+INSERT INTO cargos (nome_cargos, salario_cargos, fk_id_funcionarios) VALUES 
+('Gerente', 8000.00, 1), 
+('Assistente', 3000.00,2), 
+('Analista', 5000.00,3), 
+('Desenvolvedor', 7000.00,4), 
+('Estagiário', 1500.00,5);
 
 -- Inserindo dados na tabela funcionarios
 INSERT INTO funcionarios (nome_funcionarios, sobrenome_funcionarios, data_contratacao_funcionarios, fk_cod_cargo) VALUES 
@@ -171,7 +204,7 @@ INSERT INTO agencias (contato_agencias, endereco_agencias, cidade_agencias, uf_a
 ('contato5@agencia.com', 'Rua E, 202', 'Porto Alegre', 'RS', 5, 'MNO3141');
 
 -- Inserindo dados na tabela clientes_pj
-INSERT INTO clientes_pj (pk_cnpj_clientes_pj, telefone_clientes_pj, cep_clientes_pj, nome_clientes_pj, email_clientes_pj, senha_cliente_pf) VALUES 
+INSERT INTO clientes_pj (pk_cnpj_clientes_pj, telefone_clientes_pj, cep_clientes_pj, nome_clientes_pj, email_clientes_pj, senha_cliente_pj) VALUES 
 ('12345678000101', '1123456789', '01001-000', 'Empresa A', 'contato@empresaa.com', 'senha123'),
 ('23456789000112', '1123456790', '01002-000', 'Empresa B', 'contato@empresab.com', 'senha123'),
 ('34567890000123', '1123456791', '01003-000', 'Empresa C', 'contato@empresac.com', 'senha123'),
@@ -242,7 +275,7 @@ INSERT INTO Realiza (comprovante_realiza, fk_id_clientes_pf, fk_cnpj_clientes_pj
 ('Comprovante 4', 4, '45678900000134', 4),
 ('Comprovante 5', 5, '56789000000145', 5);
 
-SELECT * FROM aluga;
+SELECT * FROM carros;
 
 SELECT carros.*, aluga.data_entrega_aluga FROM carros INNER JOIN aluga ON carros.pk_placa_carros = aluga.fk_placa_carros ORDER BY pk_placa_carros;
 
