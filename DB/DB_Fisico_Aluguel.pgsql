@@ -242,4 +242,11 @@ INSERT INTO Realiza (comprovante_realiza, fk_id_clientes_pf, fk_cnpj_clientes_pj
 ('Comprovante 4', 4, '45678900000134', 4),
 ('Comprovante 5', 5, '56789000000145', 5);
 
-SELECT * FROM clientes_pf;
+SELECT * FROM aluga;
+
+SELECT carros.*, aluga.data_entrega_aluga FROM carros INNER JOIN aluga ON carros.pk_placa_carros = aluga.fk_placa_carros ORDER BY pk_placa_carros;
+
+
+UPDATE carros 
+SET disponibilidade_carros = 'Indisponível' 
+WHERE marca_carros = 'Honda';

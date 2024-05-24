@@ -35,14 +35,13 @@
     </div>
     <div class="pesquisa_carros_select">
         <h3>Pesquise aqui:</h3>
+
         <form action="./carros_db.php" method="post">
             <select name="pesquisa_select" id="pesquisa_select">
                 <option value="pk_placa_carros">Placa</option>
                 <option value="disponibilidade_carros">Disponibilidade</option>
                 <option value="modelo_carros">Modelo</option>
                 <option value="marca_carros">Marca</option>
-
-
             </select>
             <input type="submit" value="Pesquisar" name="submit_select" id="btn-pesquisa">
         </form>
@@ -68,15 +67,18 @@
 
                 $stmt = $conexao->prepare($query);
                 $stmt->bindParam(':busca', $busca);
-            } elseif (isset($_POST['submit-select'])) {
+
+            } elseif (isset($_POST['submit_select'])) {
 
                 $busca_select = $_POST['pesquisa_select'];
-
-                $query = 'SELECT :pesquisa_select, aluga.data_entrega_aluga FROM carros INNER JOIN aluga ON carros.pk_placa_carros = aluga.fk_placa_carros';
                 var_dump($busca_select);
+
+                $query = 'SELECT carros.*, aluga.data_entrega_aluga FROM carros INNER JOIN aluga ON carros.pk_placa_carros = aluga.fk_placa_carros ORDER BY :pesquisa_select';
+
 
                 $stmt = $conexao->prepare($query);
                 $stmt->bindParam(':pesquisa_select', $busca_select);
+
             } else {
                 $query = 'SELECT carros.*, aluga.data_entrega_aluga FROM carros INNER JOIN aluga ON carros.pk_placa_carros = aluga.fk_placa_carros';
                 $stmt = $conexao->query($query);
@@ -86,10 +88,10 @@
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 echo "<tr>";
-                echo "<td>" . htmlspecialchars($row['modelo_carros']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['ano_carros']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['marca_carros']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['pk_placa_carros']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['modelo_carros']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['ano_carros']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['marca_carros']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['pk_placa_carros']) . "</td>";
 
                 if ($row['disponibilidade_carros'] == 'Disponível') {
                     echo "<td style='background-color:green; width:10%;'>Disponível</td>";
