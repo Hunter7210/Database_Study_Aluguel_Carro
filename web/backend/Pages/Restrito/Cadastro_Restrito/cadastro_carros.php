@@ -28,5 +28,7 @@
 
         <input type="submit" name="submit" value="Cadastrar Carro">
     </form>
+
+    <a href="../DB_Restrito/carros_db.php">View DB</a>
 </body>
 </html>

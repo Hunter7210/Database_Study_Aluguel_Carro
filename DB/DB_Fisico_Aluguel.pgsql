@@ -38,7 +38,7 @@ telefone_clientes_pj VARCHAR(20) NOT NULL,
 cep_clientes_pj VARCHAR(10) NOT NULL,
 nome_clientes_pj VARCHAR(255) NOT NULL,
 email_clientes_pj VARCHAR(255) NOT NULL,
-senha_cliente_pf VARCHAR(30) NOT NULL
+senha_cliente_pj VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE clientes_pf (
@@ -132,6 +132,9 @@ ALTER TABLE cargos ADD FOREIGN KEY(fk_id_funcionarios) REFERENCES Funcionarios (
 ALTER TABLE clientes_pj ALTER COLUMN pk_cnpj_clientes_pj TYPE VARCHAR(18); 
 ALTER TABLE aluga ALTER COLUMN fk_cnpj_clientes_pj TYPE VARCHAR(18); 
 ALTER TABLE realiza ALTER COLUMN fk_cnpj_clientes_pj TYPE VARCHAR(18); 
+ALTER TABLE clientes_pf ALTER COLUMN senha_cliente_pf TYPE VARCHAR(255); 
+ALTER TABLE clientes_pj ALTER COLUMN senha_cliente_pj TYPE VARCHAR(255); 
+ALTER TABLE clientes_pj RENAME senha_cliente_pf TO senha_cliente_pj; 
 
 -- REALIZANDO O INSERTS
 
@@ -239,4 +242,4 @@ INSERT INTO Realiza (comprovante_realiza, fk_id_clientes_pf, fk_cnpj_clientes_pj
 ('Comprovante 4', 4, '45678900000134', 4),
 ('Comprovante 5', 5, '56789000000145', 5);
 
-SELECT * FROM manutencoes;
+SELECT * FROM clientes_pf;

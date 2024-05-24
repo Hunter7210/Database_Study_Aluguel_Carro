@@ -6,7 +6,7 @@ if (isset($_POST['submit'])) {
     include("../Connection/Conexao_bd.php");
 
     //Criando minha consulta sql
-    $sql = "INSERT INTO carro (modelo, ano, marca, placa, disponibilidade) VALUES (:modelo, :ano, :marca, :placa, :disponibilidade)";
+    $sql = "INSERT INTO carros (pk_placa_carros, disponibilidade_carros, ano_carros, modelo_carros, marca_carros) VALUES (:placa, :disponibilidade, :ano, :modelo, :marca)";
 
     //Inserindo dados
     if (isset($_POST['placa']) && isset($_POST['placa'])) {
