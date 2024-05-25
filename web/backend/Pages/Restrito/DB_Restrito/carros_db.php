@@ -1,7 +1,8 @@
-<?php 
+<?php
 
 session_start();
 $result = $_SESSION['result_nivel'];
+
 ?>
 
 
@@ -61,11 +62,11 @@ $result = $_SESSION['result_nivel'];
             <th>Placa</th>
             <th>Disponibilidade</th>
             <?php
-            if ($result == 1){
-            echo '<th>Data_Entrega</th>';
+            if ($result == 1) {
+                echo '<th>Data_Entrega</th>';
             }
-        ?>
-            </tr>
+            ?>
+        </tr>
         <!-- PHP code to fetch data from database and display -->
         <?php
 
@@ -95,12 +96,12 @@ $result = $_SESSION['result_nivel'];
                 $query = 'SELECT carros.*, aluga.data_entrega_aluga FROM carros INNER JOIN aluga ON carros.pk_placa_carros = aluga.fk_placa_carros';
                 $stmt = $conexao->query($query);
             }
-            
+
             $stmt->execute();
 
+            
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-               
-                
+
                 echo "<tr>";
                 echo "<td>" . htmlspecialchars($row['modelo_carros']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['ano_carros']) . "</td>";

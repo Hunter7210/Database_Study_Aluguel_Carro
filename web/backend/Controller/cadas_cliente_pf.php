@@ -1,6 +1,8 @@
-<h2>AA</h2>
-
 <?php
+
+
+
+
 if (isset($_POST['submit'])) {
     //Incluindo a conexão somente se o btn dubmit for apertador
     include("../Connection/Conexao_bd.php");
@@ -16,13 +18,12 @@ if (isset($_POST['submit'])) {
     // Verificando se o e-mail já está em uso
     if ($resultEmailExist['count'] > 0) {
         // E-mail já cadastrado, exibir mensagem de erro e interromper o processo
-        header("Location: ../Pages/Restrito/Cadastro_Restrito/cadastro_cliente_pf.php?status=email_exists");
-        exit;
-        
+        header("Location: ../Pages/Cadastro/cadastro_cliente_pf.php?status=email_exists");
+        exit();
     } else {
 
         //Criando minha consulta sql
-        $sql = "INSERT INTO clientes_pf (nome_clientes_pf, sobrenome_clientes_pf, email_clientes_pf, celular_clientes_pf, endereco_clientes_pf, cidade_clientes_pf, estado_clientes_pf, senha_cliente_pf) VALUES (:nome, :sobrenome, :email, :celular, :endereco, :cidade, :estado, :senha) ";
+        $sql = "INSERT INTO clientes_pf (nome_clientes_pf, sobrenome_clientes_pf, email_clientes_pf, celular_clientes_pf, endereco_clientes_pf, cidade_clientes_pf, estado_clientes_pf, senha_cliente_pf,fk_nivel_acesso) VALUES (:nome, :sobrenome, :email, :celular, :endereco, :cidade, :estado, :senha, 2) ";
 
 
         echo "Nome: " . $_POST['Nome_Cliente'] . "<br>";
@@ -62,10 +63,10 @@ if (isset($_POST['submit'])) {
             // Executando a consulta e verificando se foi bem-sucedida
             if ($stmt->execute()) {
                 $cadastrado = true;
-                header("Location:  ../Pages/Restrito/Cadastro_Restrito/cadastro_cliente_pf.php?status=success");
+                header("Location:  ../Pages/index.php?status=success");
             } else {
                 $cadastrado = false;
-                header("Location:  ../Pages/Restrito/Cadastro_Restrito/cadastro_cliente_pf.php?status=failed");
+                header("Location:  ../Pages/Cadastro/cadastro_cliente_pf.php?status=failed");
             }
 
             echo "<h2> Cliente cadastrado com sucesso</h2>";
@@ -75,5 +76,5 @@ if (isset($_POST['submit'])) {
         }
         //Fechar a conexão 
         $conexao = null;
-    }
+    }   
 }

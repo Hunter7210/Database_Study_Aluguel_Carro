@@ -151,6 +151,8 @@ ALTER TABLE clientes_pj ALTER COLUMN senha_cliente_pj TYPE VARCHAR(255);
 
     ALTER TABLE clientes_pf ADD COLUMN fk_nivel_acesso SERIAL;
     
+    UPDATE clientes_pf SET fk_nivel_acesso =2 WHERE fk_nivel_acesso <> 2;
+    
     ALTER TABLE clientes_pf ADD FOREIGN KEY (fk_nivel_acesso) REFERENCES niveis_acesso (pk_nivel_acesso);
 
     SELECT * FROM niveis_acesso;

@@ -26,12 +26,11 @@ if (isset($_POST['submit'])) {
         $stmtEmailExist->bindParam(':identificacao', $identificacao);
         $stmtEmailExist->bindParam(':senha', $senha);
 
-
         $stmtEmailExist->execute();
         $resultEmailExist = $stmtEmailExist->fetch(PDO::FETCH_ASSOC);
 
         // Verificar se o resultado da consulta não está vazio
-        if ($resultEmailExist) {
+        if ($resultEmailExist) {    
             //Inclusão do arquivo funções
             include("./functions.php");
 
