@@ -3,6 +3,16 @@
 session_start();
 $result = $_SESSION['result_nivel'];
 
+if ($result <> 1) {
+    echo "<h2>Você não tem permissão para acessar este site!</h2>";
+    $url = '../../../Pages/index.php';
+    header('Location:' . $url);
+} else {
+    print "Acesso permitido!";
+    $url = 'carros_db.php';
+    header('Location:' . $url);
+}
+
 ?>
 
 
@@ -99,7 +109,7 @@ $result = $_SESSION['result_nivel'];
 
             $stmt->execute();
 
-            
+
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
                 echo "<tr>";
