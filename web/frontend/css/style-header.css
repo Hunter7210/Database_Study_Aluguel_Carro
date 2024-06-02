@@ -3,28 +3,35 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+    background-color: darkgrey;
 }
 
 /* Estilo da barra de navegação */
 .navbar {
-    background-color: #000080;
-    /* Azul escuro */
     color: #ffffff;
-    height: 15vh;
+    height: 20vh;
     width: 100%;
-
+    display: flex;
+    flex-direction: column;
 }
 
 .container-princi {
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
+    padding: 1.2%;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    background-color: #000080;
+    /* Azul escuro */
+
 }
 
 #logo {
-    height: 10vh;
+    height: 12vh;
     /* Ajuste conforme o tamanho do seu logo */
 }
 
@@ -38,26 +45,23 @@
 
 .input-princ input {
     border-radius: 50px;
-    height: 5vh;
+    /* height: 5vh; */
     width: 100%;
+    height: 6vh;
     text-align: justify;
     border: none;
     color: black;
     margin: 5px;
-    padding: 4px;
 
-
-
+    display: flex;
+    align-items: center;
+    padding: 7px;   
 }
 
 
 img {
     height: 8vh;
 }
-
-
-
-
 
 /* Botões de cadastro e aluguel */
 .btns {
@@ -86,10 +90,6 @@ img {
     align-items: center;
     justify-content: space-between;
 }
-
-
-
-
 
 
 
