@@ -187,6 +187,23 @@ ALTER TABLE clientes_pj ALTER COLUMN senha_cliente_pj TYPE VARCHAR(255);
 
 
 
+-- Alteração 02/06/2024
+    CREATE TABLE categorias_carros (
+        pk_id_categorias SERIAL PRIMARY KEY,
+        nome_categorias VARCHAR(255) NOT NULL
+       );
+    SELECT * FROM categorias_carros;
+    SELECT * FROM carros;
+    
+    ALTER TABLE carros ADD COLUMN fk_id_categorias SERIAL;
+    
+    ALTER TABLE carros ADD FOREIGN KEY (fk_id_categorias) REFERENCES categorias_carros (pk_id_categorias);
+
+
+    ALTER TABLE carros ADD COLUMN img_carros VARCHAR(255);
+
+    UPDATE carros SET img_carros = 'http://localhost:3000/images/carro-suv.png' WHERE carros.fk_id_categorias = 2;
+
 
 -- REALIZANDO O INSERTS
 
@@ -294,9 +311,18 @@ INSERT INTO Realiza (comprovante_realiza, fk_id_clientes_pf, fk_cnpj_clientes_pj
 ('Comprovante 4', 4, '45678900000134', 4),
 ('Comprovante 5', 5, '56789000000145', 5);
 
+
+
+INSERT INTO categorias_carros VALUES (1, 'Hatch'), (2,'SUV'),(3,'Sport'), (4,'Sedã'), (5,'Cabriolet'), (6,'Wagon'), (7,'Minivan'), (8,'Pick-up');
+
+
 SELECT * FROM carros;
 
 SELECT carros.*, aluga.data_entrega_aluga FROM carros INNER JOIN aluga ON carros.pk_placa_carros = aluga.fk_placa_carros ORDER BY pk_placa_carros;
+
+
+
+SELECT carros.*, categorias_carros.nome_categorias FROM carros INNER JOIN categorias_carros ON carros.fk_id_categorias = categorias_carros.pk_id_categorias  ORDER BY fk_id_categorias;
 
 
 UPDATE carros 

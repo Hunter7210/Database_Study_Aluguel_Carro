@@ -19,7 +19,7 @@ if ($result <> 1) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Carros para alugar</title>
 </head>
 
 <body>
@@ -62,21 +62,19 @@ if ($result <> 1) {
         }
 
         .img {
-            width: 90%;
-            height: 40%;
+            width: 95%;
+            height: 47%;
 
             display: flex;
             align-items: center;
             justify-content: center;
-
-            border-radius: 10px;
-            padding: 10px;
-
-            background-color: aqua;
         }
 
         img {
+            border-radius: 10px;
+            padding: 10px;
 
+            height: 100%;
             width: 100%;
         }
 
@@ -166,7 +164,7 @@ if ($result <> 1) {
             include("../../Connection/conexao_bd.php");
 
             try {
-                $query = 'SELECT carros.*, aluga.data_entrega_aluga FROM carros INNER JOIN aluga ON carros.pk_placa_carros = aluga.fk_placa_carros';
+                $query = 'SELECT carros.*, categorias_carros.nome_categorias FROM carros INNER JOIN categorias_carros ON carros.fk_id_categorias = categorias_carros.pk_id_categorias  ORDER BY fk_id_categorias;';
                 $stmt = $conexao->query($query);
                 $stmt->execute();
 
@@ -176,10 +174,22 @@ if ($result <> 1) {
                     echo '
                 <div class="card">
                 <div class="titulo-class"> 
-                    <h2 class="title-h2">' . htmlspecialchars($row['modelo_carros']) .  '</h2>  //ADICIONAR A TABELA CARROS A COLUNA categoria_carros e foto_carro 
-                </div>
-                <div class="img">
-                    <img src="' . htmlspecialchars($row['pk_placa_carros']) . '" alt="">
+                    <h2 class="title-h2">' . htmlspecialchars($row['nome_categorias']) .  '</h2> 
+                </div> 
+                <div class="img">'
+            ?>
+
+                    <?php
+                    //A img_carro esta presente no servidor_img 
+                    $img;
+                    if ($row['img_carros'] <> null || $row['img_carros'] <> "") {
+                        $img = $row['img_carros'];
+                    } else {
+                        $img = "http://localhost:3000/images/no_photo.png";
+                    }
+
+                    echo '
+                    <img src=" ' . $img . '" alt=""> 
                 </div>
                 <div class="conteudo">
                     <h2>' . htmlspecialchars($row['modelo_carros']) . '</h2>
@@ -187,6 +197,7 @@ if ($result <> 1) {
                         agências!"</p>
                 </div>
                 <div class="row-conteudo"> ' ?>
+
             <?php
                     if ($row['disponibilidade_carros'] == 'Disponível') {
                         echo '
@@ -222,62 +233,6 @@ if ($result <> 1) {
 
 </html>
 
-<?php
-
-/* include("../../../Connection/conexao_bd.php");
-
-try {
-    if (isset($_POST['submit'])) {
-        $busca = $_POST['pesquisa'];
-
-        $query = 'SELECT carros.*, aluga.data_entrega_aluga FROM carros INNER JOIN aluga ON carros.pk_placa_carros = aluga.fk_placa_carros WHERE carros.pk_placa_carros = :busca OR carros.disponibilidade_carros = :busca OR carros.modelo_carros = :busca OR carros.marca_carros = :busca';
-
-        $stmt = $conexao->prepare($query);
-        $stmt->bindParam(':busca', $busca);
-    } elseif (isset($_POST['submit_select'])) {
-
-        $busca_select = $_POST['pesquisa_select'];
-        var_dump($busca_select);
-
-        $query = 'SELECT carros.*, aluga.data_entrega_aluga FROM carros INNER JOIN aluga ON carros.pk_placa_carros = aluga.fk_placa_carros ORDER BY :pesquisa_select';
-
-
-        $stmt = $conexao->prepare($query);
-        $stmt->bindParam(':pesquisa_select', $busca_select);
-    } else {
-        $query = 'SELECT carros.*, aluga.data_entrega_aluga FROM carros INNER JOIN aluga ON carros.pk_placa_carros = aluga.fk_placa_carros';
-        $stmt = $conexao->query($query);
-    }
-
-    $stmt->execute();
-
-
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-
-        echo "<tr>";
-        echo "<td>" . htmlspecialchars($row['modelo_carros']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['ano_carros']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['marca_carros']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['pk_placa_carros']) . "</td>";
-
-        if ($row['disponibilidade_carros'] == 'Disponível') {
-            echo "<td style='background-color:green; width:10%;'>Disponível</td>";
-        } elseif ($row['disponibilidade_carros'] == 'Indisponível') {
-            echo "<td style='background-color:red; width:10%;'>Indisponível</td>";
-            if ($result == 1) {
-                echo "<td>" . htmlspecialchars($row['data_entrega_aluga']) . "</td>";
-            }
-        }
-
-        echo "</tr>";
-    }
-} catch (PDOException $e) {
-    echo "Erro: " . $e->getMessage();
-}
-$conexao = null;
-?>
- */
-?>
 </body>
 
 </html>
