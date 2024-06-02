@@ -1,9 +1,23 @@
 
-- Cliente
-    - Paginas    
-        - index.php
-        - cliente_cadastro.php
-        - cliente_login.php
-        -  
+Site de aluguel de carro:
 
-- ADM  
+- Cliente //Paginas que o cliente pode ver
+
+    - index.php
+    - cadastro_cliente_pf.php
+    - login_cliente_pf.php //O Login sera realizado utilizando o email
+    - lista_carros_cliente.php //Pagina contendo os cards mostrando todos os carros
+    - cadastro_aluguel_cliente.php //Pagina onde o cliente vai alugar o carro
+    - sobre_nos_cliente.php //Sobre nós
+
+- ADM  //Paginas que o adm pode ver
+    
+    - Todas as anteriores
+    - O login do ADM sera feito na mesma pagina do cliente, porem usando o CPF
+    
+    - index_adm.php
+    - cadastro_carro_adm.php
+    - view_carro_adm.php //Pagina contendo o read, update e delete, alem de mostrar quais carros estao em manutenção, alugados etc
+    - view_funcionarios_adm.php //Alem das informações dos funcionarios mostra seus cargos
+    - view_manutencoes_adm.php //Vai ver todos os carros que estão em manutenção e detelhes.
+
