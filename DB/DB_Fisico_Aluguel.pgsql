@@ -205,6 +205,9 @@ ALTER TABLE clientes_pj ALTER COLUMN senha_cliente_pj TYPE VARCHAR(255);
     UPDATE carros SET img_carros = 'http://localhost:3000/images/carro-suv.png' WHERE carros.fk_id_categorias = 2;
 
 
+    ALTER TABLE categorias_carros ADD COLUMN valor_diario MONEY;
+
+
 -- REALIZANDO O INSERTS
 
 -- Inserindo dados na tabela cargos
@@ -315,8 +318,24 @@ INSERT INTO Realiza (comprovante_realiza, fk_id_clientes_pf, fk_cnpj_clientes_pj
 
 INSERT INTO categorias_carros VALUES (1, 'Hatch'), (2,'SUV'),(3,'Sport'), (4,'Sedã'), (5,'Cabriolet'), (6,'Wagon'), (7,'Minivan'), (8,'Pick-up');
 
+UPDATE categorias_carros SET valor_diario = 100.00 WHERE pk_id_categorias = 1;  
 
-SELECT * FROM carros;
+UPDATE categorias_carros SET valor_diario = 210.00 WHERE pk_id_categorias = 2;  
+
+UPDATE categorias_carros SET valor_diario = 420.00 WHERE pk_id_categorias = 3;  
+
+UPDATE categorias_carros SET valor_diario = 190.00 WHERE pk_id_categorias = 4;  
+
+UPDATE categorias_carros SET valor_diario = 570.00 WHERE pk_id_categorias = 5;  
+
+UPDATE categorias_carros SET valor_diario = 200.00 WHERE pk_id_categorias = 6;  
+
+UPDATE categorias_carros SET valor_diario = 440.00 WHERE pk_id_categorias = 7;
+
+UPDATE categorias_carros SET valor_diario = 250.00 WHERE pk_id_categorias = 8;  
+
+
+SELECT * FROM categorias_carros;
 
 SELECT carros.*, aluga.data_entrega_aluga FROM carros INNER JOIN aluga ON carros.pk_placa_carros = aluga.fk_placa_carros ORDER BY pk_placa_carros;
 
