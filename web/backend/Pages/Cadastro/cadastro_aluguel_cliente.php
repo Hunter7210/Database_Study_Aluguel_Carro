@@ -109,35 +109,43 @@
             display: none;
         }
     </style>
-    <div class="container-aluga">
-        <div class="container_local">
-            <div class="aluga_local">
-                <p>Local de retirada:</p>
-                <input class="inputs_aluga_local" type="text" placeholder="Digite o local de retirada">
+    <form action="../../Controller/verify_aluguel_carro.php" method="post">
+        <div class="container-aluga">
+            <div class="container_local">
+                <div class="aluga_local">
+                    <p>Local de retirada:</p>
+                    <input class="inputs_aluga_local" type="text" placeholder="Digite o local de retirada">
+                </div>
+                <div class="aluga_local_entrega">
+                    <p>Local de entrega:</p>
+                    <input class="inputs_aluga_local" type="text" placeholder="Digite o local de entrega">
+                </div>
             </div>
-            <div class="aluga_local_entrega">
-                <p>Local de entrega:</p>
-                <input class="inputs_aluga_local" type="text" placeholder="Digite o local de entrega">
+            <div class="aluga_data_retirada">
+                <p>Data de retirada:</p>
+                <input class="inputs_aluga" name="data_retirada" type="date" placeholder="Data Retirada">
             </div>
-        </div>
-        <div class="aluga_data_retirada">
-            <p>Data de retirada:</p>
-            <input class="inputs_aluga" name="data_retirada" type="date" placeholder="Data Retirada">
-        </div>
-        <div class="aluga_data_entrega">
-            <p>Data de entrega:</p>
-            <input class="inputs_aluga" name="data_entrega" type="date" placeholder="Data Entrega">
-        </div>
+            <div class="aluga_data_entrega">
+                <p>Data de entrega:</p>
+                <input class="inputs_aluga" name="data_entrega" type="date" placeholder="Data Entrega">
+            </div>
 
-        <div class="aluga_enviar">
-            <input class="inputs_aluga_btn" type="submit" value="Enviar">
-        </div>
+            <div class="aluga_enviar">
+                <input class="inputs_aluga_btn" type="submit" value="Enviar">
+            </div>
 
-    </div>
-    <div class="entrega_outra_cidade">
-        <p>Deseja entregar em outra cidade?</p>
-        <input type="checkbox" name="checkbox_entrega" id="checkbox_entrega">
-    </div>
+        </div>
+        <div class="entrega_outra_cidade">
+            <p>Deseja entregar em outra cidade?</p>
+            <input type="checkbox" name="checkbox_entrega" id="checkbox_entrega">
+        </div>
+    </form>
+
+
+    <?php
+    session_start();
+    echo $_SESSION['calculo_valor'];
+    ?>
 </body>
 
 </html>

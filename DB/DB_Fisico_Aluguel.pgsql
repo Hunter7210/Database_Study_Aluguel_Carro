@@ -347,3 +347,7 @@ SELECT carros.*, categorias_carros.nome_categorias FROM carros INNER JOIN catego
 UPDATE carros 
 SET disponibilidade_carros = 'Indisponível' 
 WHERE marca_carros = 'Honda';
+
+
+
+select * FROM  aluga;
