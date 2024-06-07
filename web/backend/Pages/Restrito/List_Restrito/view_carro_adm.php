@@ -1,18 +1,19 @@
 <?php
 
-session_start();
-$result = $_SESSION['result_nivel'];
+// session_start();
+// $result = $_SESSION['result_nivel'];
 
-if ($result <> 1) {
-    echo "<h2>Você não tem permissão para acessar este site!</h2>";
-    $url = '../../../Pages/index.php';
-    header('Location:' . $url);
-} else {
-    print "Acesso permitido!";
-    $url = 'carros_db.php';
-    header('Location:' . $url);
-}
+// if ($result <> 1) {
+//     echo "<h2>Você não tem permissão para acessar este site!</h2>";
+//     $url = '../../../Pages/index.php';
+//     header('Location:' . $url);
+// } else {
+//     print "Acesso permitido!";
+//     $url = './view_carro_adm.php';
+//     header('Location:' . $url);
+// }
 
+// 
 ?>
 
 
@@ -46,7 +47,7 @@ if ($result <> 1) {
 
     <div class="pesquisa_carros">
         <h3>Pesquise aqui:</h3>
-        <form action="./carros_db.php" method="post">
+        <form action="./view_carro_adm.php" method="post">
             <input type="text" name="pesquisa" id="pesquisa">
             <input type="submit" value="Pesquisar" name="submit" id="btn-pesquisa">
         </form>
@@ -54,7 +55,7 @@ if ($result <> 1) {
     <div class="pesquisa_carros_select">
         <h3>Pesquise aqui:</h3>
 
-        <form action="./carros_db.php" method="post">
+        <form action="./view_carro_adm.php" method="post">
             <select name="pesquisa_select" id="pesquisa_select">
                 <option value="pk_placa_carros">Placa</option>
                 <option value="disponibilidade_carros">Disponibilidade</option>
@@ -82,8 +83,11 @@ if ($result <> 1) {
 
 
 
+
         include("../../../Connection/conexao_bd.php");
 
+
+        include("../../../Controller/functions.php");
         try {
             if (isset($_POST['submit'])) {
                 $busca = $_POST['pesquisa'];
@@ -109,14 +113,24 @@ if ($result <> 1) {
 
             $stmt->execute();
 
-
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-
                 echo "<tr>";
-                echo "<td>" . htmlspecialchars($row['modelo_carros']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['ano_carros']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['marca_carros']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['pk_placa_carros']) . "</td>";
+                echo "<td>";
+                echo "<span class='visualizar'>" . htmlspecialchars($row['modelo_carros']) . "</span>";
+                echo "<input type='text' class='editar' name='modelo' value='" . htmlspecialchars($row['modelo_carros']) . "' style='display: none;'>";
+                echo "</td>";
+                echo "<td>";
+                echo "<span class='visualizar'>" . htmlspecialchars($row['ano_carros']) . "</span>";
+                echo "<input type='text' class='editar' name='ano' value='" . htmlspecialchars($row['ano_carros']) . "' style='display: none;'>";
+                echo "</td>";
+                echo "<td>";
+                echo "<span class='visualizar'>" . htmlspecialchars($row['marca_carros']) . "</span>";
+                echo "<input type='text' class='editar' name='marca' value='" . htmlspecialchars($row['marca_carros']) . "' style='display: none;'>";
+                echo "</td>";
+                echo "<td>";
+                echo "<span class='visualizar'>" . htmlspecialchars($row['pk_placa_carros']) . "</span>";
+                echo "<input type='text' class='editar' value='" . htmlspecialchars($row['pk_placa_carros']) . "' style='display: none;'>";
+                echo "</td>";
 
                 if ($row['disponibilidade_carros'] == 'Disponível') {
                     echo "<td style='background-color:green; width:10%;'>Disponível</td>";
@@ -127,14 +141,72 @@ if ($result <> 1) {
                     }
                 }
 
+                // Botão Editar
+                echo '<td><button class="btn-editar">Editar</button></td>';
+                // Botão Excluir
+
+
+                // Botão Excluir
+                echo "<td><a href='excluir.php?id=" . htmlspecialchars($row['pk_placa_carros']) . "'>Excluir</a></td>";
+
                 echo "</tr>";
             }
         } catch (PDOException $e) {
             echo "Erro: " . $e->getMessage();
         }
         $conexao = null;
+
         ?>
     </table>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+
+$(".btn-editar").click(function() {
+    var tr = $(this).closest("tr");
+    tr.find(".visualizar").hide();
+    tr.find(".editar").show();
+});
+
+$("tr").dblclick(function() {
+    
+    var placa = $(this).find(".editar").first().val();
+    var modelo = $(this).find(".editar").first().val();
+    var ano = $(this).find(".editar").first().val();
+    var marca = $(this).find(".editar").first().val();
+
+    var newdados = {
+        'modelo': modelo,
+        'ano': ano,
+        'marca': marca
+    };
+
+    editar_carros(placa, newdados); // Corrigido para chamar editar_carros
+});
+});
+
+function editar_carros(placa, newdados) { // Corrigido para nomear a função corretamente
+$.ajax({
+    type: "POST",
+    url: "../../../Controller/functions.php",
+    data: {
+        placa: placa,
+        newdados: newdados
+    },
+    success: function(response) {
+        alert(response);
+    },
+    error: function(xhr, status, error) {
+        alert("Erro ao editar carros: " + error);
+    }
+});
+}
+</script>
+
+
+    </form>
+
 </body>
 
 </html>
+

@@ -10,7 +10,7 @@
 <body>
 <h2>ESTE É O MEU INDEX DO ADM</h2>
     <form action="./index_adm.php" method="post">
-        <input type="button"  value="Cadastro_Carros">
+        <input type="submit"  value="Cadastro_Carros">
        
         <input type="submit" value="Ver_DB" name="ver_db">
     </form>
@@ -23,7 +23,7 @@
 <?php
 
 if (isset($_POST['ver_db'])) {
-    header("Location: ./DB_Restrito/carros_db.php");
+    header("Location: ./List_Restrito/view_carro_adm.php");
     exit();
 }
 

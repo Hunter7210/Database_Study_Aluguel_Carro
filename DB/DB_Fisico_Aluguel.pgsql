@@ -351,3 +351,39 @@ WHERE marca_carros = 'Honda';
 
 
 select * FROM  aluga;
+
+
+select * FROM  carros;
+
+select * FROM  administradores;
+select * FROM  niveis_acesso;
+
+
+
+SELECT * FROM clientes_pf;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

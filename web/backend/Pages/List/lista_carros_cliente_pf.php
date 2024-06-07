@@ -1,16 +1,15 @@
 <?php
 
-session_start();
-$result = $_SESSION['result_nivel'];
+// session_start();
+// $result = $_SESSION['result_nivel'];
 
-if ($result <> 1) {
-    echo "<h2>Um adm acessou esta pagina!</h2>";
-} else {
-    print "Um usuario normal acessou esta pagina!";
-    $url = 'lista_carros_cliente_pf.php';
-    header('Location:' . $url);
-}
-
+// if ($result <> 1) {
+//     echo "<h2>Um adm acessou esta pagina!</h2>";
+// } else {
+//     print "Um usuario normal acessou esta pagina!";
+//     $url = 'lista_carros_cliente_pf.php';
+//     header('Location:' . $url);
+// }
 ?>
 
 <!DOCTYPE html>

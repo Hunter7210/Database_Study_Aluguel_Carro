@@ -37,3 +37,52 @@ function verificarAcesso($conexao, $CodUsuario, $table)
         return false;
     }
 }
+
+
+
+
+
+function editar_carros($conexao, $placa, $newdados) {
+
+    $query = "UPDATE carros SET  modelo_carros = :modelo, ano_carros = :ano, marca_carros = :marca WHERE pk_placa_carros = $placa" ;
+    
+    $stmt = $conexao->prepare($query);
+
+    $stmt->bindParam(':placa', $placa);
+    $stmt->bindParam(':modelo', $newdados['modelo']);
+    $stmt->bindParam(':ano', $newdados['ano']);
+    $stmt->bindParam(':marca', $newdados['marca']);
+
+    // Execute a query
+    if ($stmt->execute()) {
+        echo "Atualizado com sucesso";
+        return true; // Atualização bem-sucedida
+    } else {
+        return false; // Falha na atualização
+    }
+}
+
+
+function editar_disponibilidade_carros($conexao, $placa, $newdados) {
+
+    $query = "UPDATE carros SET  disponibilidade_carros = :disponibilidade WHERE pk_placa_carros = $placa" ;
+    
+    $stmt = $conexao->prepare($query);
+    
+    $stmt->bindParam(':placa', $placa);
+    $stmt->bindParam(':disponibilidade', $newdados['disponibilidade']);
+
+    // Execute a query
+    if ($stmt->execute()) {
+        return true; // Atualização bem-sucedida
+    } else {
+        return false; // Falha na atualização
+    }
+}
+
+/* 
+function atualizar_usuario_pf($conexao, $id) {
+
+    $query = "UPDATE clientes_pf SET        :campo_atualiza WHERE pk_id_clientes_pf = $id" 
+}
+ */

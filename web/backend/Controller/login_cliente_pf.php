@@ -5,7 +5,6 @@ if (isset($_POST['submit'])) {
 
         include("../Connection/Conexao_bd.php");
 
-
         $identificacao = $_POST['Email_Cliente'];
         $senha = $_POST['Senha_Cliente'];
 
@@ -29,6 +28,8 @@ if (isset($_POST['submit'])) {
         $stmtEmailExist->execute();
         $resultEmailExist = $stmtEmailExist->fetch(PDO::FETCH_ASSOC);
 
+        echo $resultEmailExist;
+        
         // Verificar se o resultado da consulta não está vazio
         if ($resultEmailExist) {    
             //Inclusão do arquivo funções
@@ -40,11 +41,14 @@ if (isset($_POST['submit'])) {
             if ($table == 'administradores') {
                 $column = 'cpf_administradores';
             }
+
             // Obtendo o código do usuário
             $codUsu = $resultEmailExist[$column];
+
             session_start();
             // Verificar o nível de acesso do usuário
             $resultado_nivel = verificarAcesso($conexao, $codUsu, $table);
+
             $_SESSION['result_nivel'] = $resultado_nivel;
             // Exibir o resultado da verificação de acesso para depuração
 
@@ -71,6 +75,8 @@ if (isset($_POST['submit'])) {
         } else {
             // Exibir mensagem de erro se o email ou senha estiverem incorretos
             echo "Email ou senha incorretos.";
+        echo $resultEmailExist;
+        
         }
     } else {
         // Exibir mensagem de erro se os campos não estiverem preenchidos
