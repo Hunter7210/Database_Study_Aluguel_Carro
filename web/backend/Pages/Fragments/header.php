@@ -1,66 +1,82 @@
-<link rel="stylesheet" href="../../../frontend/css/style-header.css">
-<div class="navbar">
-    <div class="container-princi">
-        <img src="../assets/img/banners/logo.png" alt="Logo LOC HERE" id="logo">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="Public/css/style-header.css">
+
+</head>
+
+<body>
 
 
-        <div class="input-princ">
-            <img src="../assets/img/banners/logo.png" alt="">
-            <input type="text" placeholder="Pesquise...">
-        </div>
+    <div class="navbar">
 
-        <div class="btns">
-            <div class="btn-cadast">
-                <img src="../assets/img/banners/logo.png" alt="Cadastre-se">
-                <a>Cadastre-se</a>
-            </div>
-            <div class="btn-alugar">
-                <img src="../assets/img/banners/logo.png" alt="AlugueCarro">
-                <a>Alugue aqui</a>
-            </div>
+        <div class="container-princi">
+            <form action="" method="post">
+                <img src="Public/Assets/img/banners/logo.png" alt="Logo LOC HERE" id="logo">
+
+
+                <div class="input-princ">
+                    <div class="pesquisar_index">
+
+                        <img src="Public/Assets/img/Icons/pesquisa-de-lupa.png" class="img-input">
+                    </div>
+                    <input type="text" placeholder="Pesquise...">
+                </div>
+
+
+                <div class="btns">
+                    <div class="btn-cadast">
+                        <img src="Public/Assets/img/Icons/usuario-fundo-preto.png" alt="">
+
+                        <input type="submit" value="Cadastrar-me" name="cadastro_cliente">
+                    </div>
+                    <div class="btn-alugar">
+                        <img src="Public/Assets/img/Icons/carro-alugado.png" alt="AlugueCarro">
+                        <a>Alugue aqui</a>
+                    </div>
+
+            </form>
+
         </div>
     </div>
 
-    
     <div class="containerlinks">
 
         <div class="iconsCar">
-            <img src="../assets/img/banners/logo.png" alt="">
+            <img src="Public/Assets/img/Icons/hatchback.png" alt="">
             <a href="#">Hatchs</a>
         </div>
 
 
         <div class="iconsCar">
-            <img src="../assets/img/banners/logo.png" alt="">
+            <img src="Public/Assets/img/Icons/sedan.png" alt="">
             <a href="#">Sedãs</a>
         </div>
 
 
         <div class="iconsCar">
-            <img src="../assets/img/banners/logo.png" alt="">
-            <a href="#">Minivans</a>
+            <img src="Public/Assets/img/Icons/carro-suv.png" alt="">
+            <a href="#">Suv</a>
         </div>
 
 
         <div class="iconsCar">
-            <img src="../assets/img/banners/logo.png" alt="">
-            <a href="#">Conversível</a>
+            <img src="Public/Assets/img/Icons/wagon.png" alt="">
+            <a href="#">Peruas</a>
         </div>
         <div class="iconsCar">
-            <img src="../assets/img/banners/logo.png" alt="">
-            <a href="#">Esportivo</a>
+            <img src="Public/Assets/img/Icons/utilitario.png" alt="">
+            <a href="#">Utilitarios</a>
         </div>
     </div>
 
-</div>
+    </div>
 
+</body>
 
-<?php
-session_start();
-$result = $_SESSION['result_nivel'];
-
-if($result == 1) {
-    echo '<h2> $result <h2>';
-}
-
-?>
+</html>

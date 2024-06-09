@@ -4,7 +4,7 @@
 // usuario
 // senha
 $endereco = 'localhost';
-$banco = 'db_locadora_carros_heitor';
+$banco = 'db_locadora_carros';
 $adm = 'postgres';
 $senha = 'postgres';
 

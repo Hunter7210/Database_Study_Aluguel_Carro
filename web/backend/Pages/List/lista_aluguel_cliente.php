@@ -110,6 +110,16 @@
         }
     </style>
     <form action="../../Controller/verify_aluguel_carro.php" method="post">
+
+
+
+
+
+
+
+
+
+    
         <div class="container-aluga">
             <div class="container_local">
                 <div class="aluga_local">
@@ -133,19 +143,20 @@
             <div class="aluga_enviar">
                 <input class="inputs_aluga_btn" type="submit" value="Enviar">
             </div>
+            <div class="entrega_outra_cidade">
+                <p>Deseja entregar em outra cidade?</p>
+                <input type="checkbox" name="checkbox_entrega" id="checkbox_entrega">
+            </div>
 
-        </div>
-        <div class="entrega_outra_cidade">
-            <p>Deseja entregar em outra cidade?</p>
-            <input type="checkbox" name="checkbox_entrega" id="checkbox_entrega">
         </div>
     </form>
 
 
     <?php
-    session_start();
-    echo $_SESSION['calculo_valor'];
+  /*   session_start();
+    echo $_SESSION['calculo_valor']; */
     ?>
 </body>
 
 </html>
+

@@ -1,0 +1,333 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* CONTAINER-PRICIPAL */
+.container-principal-index {
+    width: 100%;
+
+    background-color: aliceblue;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* CARROUSEL */
+.carrousel {
+    width: 80%;
+    height: 70vh;
+
+    margin-top: 1%;
+
+    background-color: black;
+}
+
+.carrousel img {
+    width: 100%;
+    height: 70vh;
+
+}
+
+
+/* CONTIANER-IN */
+.container-in {
+    width: 90%;
+}
+
+
+/* BANNER PESQUI */
+.banner-pesqui {
+    width: 100%;
+    height: 40vh;
+
+    text-align: center;
+    background-image: url(../assets/img/banners/logo.png);
+    background-repeat: none;
+    background-size: cover;
+
+    color: aliceblue;
+
+    margin-bottom: 3vh;
+}
+
+.titulo-pesqui {
+    margin-top: 3vh;
+}
+
+.inputs-pesqui form {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+
+    font: 300;
+    font-size: 1vh;
+}
+
+.cidade-retirada {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-around;
+
+    background-color: black;
+}
+
+.cidade-retirada #cidade {
+    padding: 3px;
+    margin: 10px;
+
+    width: 100%;
+    height: 5vh;
+
+    border: 0;
+    border-radius: 4px;
+}
+
+.data-retirada #data-retirada {
+    padding: 3px;
+    margin: 10px;
+
+    width: 100%;
+    height: 5vh;
+
+    border: 0;
+    border-radius: 4px;
+}
+
+.data-entrega #data-entrega {
+    padding: 3px;
+    margin: 10px;
+
+    width: 100%;
+    height: 5vh;
+
+    border: 0;
+    border-radius: 4px;
+}
+
+#enviar {
+    padding: 3px;
+    margin: 10px;
+
+    width: 15%;
+    height: 6vh;
+
+    background-color: blueviolet;
+}
+
+
+
+.cards-promocao {
+    width: 100%;
+    height: 70vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+.titulo-cards {
+    width: 100%;
+    text-align: center;
+}
+
+
+.cards-construcao {
+    width: 100%;
+    height: 65vh;
+
+    display: grid;
+    gap: 0.5%;
+    grid-template-columns: 33% 33% 33%;
+
+}
+
+.conteudo-cards {
+    background-color: aliceblue;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+
+    height: 62vh;
+    border-style: solid;
+
+    text-align: center;
+
+    padding-left: 1%;
+    padding-right: 1%;
+    
+    margin-bottom: 20vh;
+}
+
+.conteudo-cards img {
+    width: 80%;
+    height: 35vh;
+}
+
+
+
+
+.info-card {
+    width: 90%;
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+
+
+}
+
+.info-card-detalhes {
+    text-decoration: none;
+
+    width: 95%;
+
+}
+
+
+.info-card-btn{
+    height: 8vh;
+    width: 95%;
+}
+
+.conferir-promo-card{
+    height: 6vh;
+    width: 100%;
+    border-radius: 10px;
+
+    border: none;
+    background-color: greenyellow;
+}
+
+
+
+
+
+
+
+
+.banner-aviso {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    margin-top: 3%;
+    margin-bottom: 3%;
+
+}
+
+.banner-aviso img {
+
+    width: 100%;
+    height: 50vh;
+}
+
+
+
+
+.cards-contrucao-mais-alug {
+    width: 100%;
+    height: 45vh;
+
+    display: grid;
+    gap: 0.5%;
+    grid-template-columns: 50% 50%;
+}
+
+
+
+.conteudo-cards-mais-alug {
+    background-color: aliceblue;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+
+    height: 42vh;
+    border-style: solid;
+
+    text-align: center;
+
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+
+.conteudo-cards-mais-alug img {
+    width: 60%;
+    height: 35vh;
+}
+
+
+.descricao-card-alug {
+    text-decoration: none;
+
+    width: 95%;
+}
+
+.btn-card{
+    height: 6vh;
+    width: 95%;
+}
+
+
+
+.conferir-mais-alug{
+    height: 6vh;
+    width: 100%;
+
+    border-radius:10px ;
+    background-color: rgb(17, 207, 0);
+    
+}
+
+
+.info-card-mais-alug {
+    width: 60%;
+    height: 35vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+.btn-conferir-mais-alug {
+    width: 100%;
+    margin-top: 4%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.conferir-todos-carros {
+    height: 8vh;
+    width: 50%;
+
+    margin: 5%;
+
+    background-color: rgb(46, 146, 0);
+    border-radius: 30px;
+    border: none;
+    color: aliceblue;
+
+}

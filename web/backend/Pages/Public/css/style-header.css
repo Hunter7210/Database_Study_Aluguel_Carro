@@ -1,16 +1,13 @@
 /* Reset de estilos padrão */
-* {
+body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-
-    background-color: darkgrey;
 }
 
 /* Estilo da barra de navegação */
 .navbar {
     color: #ffffff;
-    height: 20vh;
+
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -18,11 +15,13 @@
 
 .container-princi {
     width: 100%;
-    margin: 0 auto;
-    padding: 1.2%;
+    height: 6vh;
+    padding-bottom: 30px;
+    padding-top: 30px;
+
 
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 
     background-color: #000080;
@@ -31,36 +30,45 @@
 }
 
 #logo {
-    height: 12vh;
+    height: 9vh;
     /* Ajuste conforme o tamanho do seu logo */
 }
+
+
+form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+
+
 
 .input-princ {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    width: 50%;
+    flex-direction: row-reverse;
+    width: 30%;
 }
 
 .input-princ input {
     border-radius: 50px;
-    /* height: 5vh; */
     width: 100%;
     height: 6vh;
+    padding-left: 20px;
     text-align: justify;
     border: none;
     color: black;
-    margin: 5px;
-
-    display: flex;
-    align-items: center;
-    padding: 7px;   
 }
 
 
-img {
-    height: 8vh;
+.img-input {
+    padding-left: 1%;
+    height: 5vh;
+    
 }
 
 /* Botões de cadastro e aluguel */
@@ -74,7 +82,8 @@ img {
 
 .btns img {
     height: 5vh;
-    margin: 5px;
+    margin: 4px;
+
 }
 
 .btn-cadast {
