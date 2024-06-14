@@ -92,6 +92,10 @@
 
 <body>
 
+
+    <?php
+    include('../Fragments/header.php')
+    ?>
     <div class="container">
         <h2>Cadastro de Clientes PF - Etapas</h2>
         <form action="../../../Controller/cadas_cliente_pf.php" method="post">
@@ -161,7 +165,7 @@
     <?php
     if (isset($_GET['status'])) {
         if ($_GET['status'] == 'success') {
-            echo  '<br>
+            echo  '<br> 
                 <div class="container-result-sucess">
                     <h2>Cadastro realizado com sucesso</h2>
                 </div>';

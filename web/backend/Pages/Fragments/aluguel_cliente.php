@@ -109,17 +109,10 @@
             display: none;
         }
     </style>
-    <form action="../../Controller/verify_aluguel_carro.php" method="post">
 
 
+    <form action="Controller/verify_aluguel_carro.php" method="post">
 
-
-
-
-
-
-
-    
         <div class="container-aluga">
             <div class="container_local">
                 <div class="aluga_local">

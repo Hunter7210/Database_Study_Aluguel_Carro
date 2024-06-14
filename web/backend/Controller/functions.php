@@ -1,5 +1,6 @@
 <?php
 
+
 // Criação de uma função para busca de todos os carros
 function buscar_all_car($conexao)
 {
@@ -42,10 +43,11 @@ function verificarAcesso($conexao, $CodUsuario, $table)
 
 
 
-function editar_carros($conexao, $placa, $newdados) {
+function editar_carros($conexao, $placa, $newdados)
+{
 
-    $query = "UPDATE carros SET  modelo_carros = :modelo, ano_carros = :ano, marca_carros = :marca WHERE pk_placa_carros = $placa" ;
-    
+    $query = "UPDATE carros SET  modelo_carros = :modelo, ano_carros = :ano, marca_carros = :marca WHERE pk_placa_carros = $placa";
+
     $stmt = $conexao->prepare($query);
 
     $stmt->bindParam(':placa', $placa);
@@ -63,12 +65,13 @@ function editar_carros($conexao, $placa, $newdados) {
 }
 
 
-function editar_disponibilidade_carros($conexao, $placa, $newdados) {
+function editar_disponibilidade_carros($conexao, $placa, $newdados)
+{
 
-    $query = "UPDATE carros SET  disponibilidade_carros = :disponibilidade WHERE pk_placa_carros = $placa" ;
-    
+    $query = "UPDATE carros SET  disponibilidade_carros = :disponibilidade WHERE pk_placa_carros = $placa";
+
     $stmt = $conexao->prepare($query);
-    
+
     $stmt->bindParam(':placa', $placa);
     $stmt->bindParam(':disponibilidade', $newdados['disponibilidade']);
 
@@ -86,3 +89,12 @@ function atualizar_usuario_pf($conexao, $id) {
     $query = "UPDATE clientes_pf SET        :campo_atualiza WHERE pk_id_clientes_pf = $id" 
 }
  */
+
+
+function logout($logado)
+{
+    $logado = false;
+    session_destroy();
+    exit();
+
+}

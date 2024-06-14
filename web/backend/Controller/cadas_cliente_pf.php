@@ -1,6 +1,8 @@
 <?php
 
+session_start();
 
+$_SESSION["nome_cliente"];
 
 
 if (isset($_POST['submit'])) {
@@ -62,10 +64,13 @@ if (isset($_POST['submit'])) {
 
             // Executando a consulta e verificando se foi bem-sucedida
             if ($stmt->execute()) {
-                $cadastrado = true;
+                $cadastrado = true;/* 
+                $_SESSION["nome_cliente"] = $_POST['Nome_Cliente'];
                 header("Location:  ../Pages/index.php?status=success");
+ */
             } else {
-                $cadastrado = false;
+                $cadastrado = false;/* 
+                $_SESSION["nome_cliente"] = ''; */
                 header("Location:  ../Pages/Cadastro/cadastro_cliente_pf.php?status=failed");
             }
 

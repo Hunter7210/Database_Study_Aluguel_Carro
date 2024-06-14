@@ -4,20 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title></title>
 
     <link rel="stylesheet" href="Public/css/style-index.css">
 </head>
-
+Document
 <body>
     <?php
     include('Fragments/header.php');
     ?>
-
-
-    <!-- 
-    <input type="submit" value="Login" name="login_cliente">
- -->
 
     <div class="container-principal-index">
         <div class="carrousel">
@@ -34,7 +29,7 @@
 
                 <div class="inputs-pesquisa">
                     <?php
-                    include('List/lista_aluguel_cliente.php')
+                    include('Fragments/aluguel_cliente.php')
                     ?>
                 </div>
             </div>

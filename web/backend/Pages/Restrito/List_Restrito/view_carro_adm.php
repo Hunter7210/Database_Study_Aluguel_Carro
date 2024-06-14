@@ -1,20 +1,21 @@
 <?php
 
-// session_start();
-// $result = $_SESSION['result_nivel'];
+/* session_start();
+$result = $_SESSION['result_nivel'];
 
-// if ($result <> 1) {
-//     echo "<h2>Você não tem permissão para acessar este site!</h2>";
-//     $url = '../../../Pages/index.php';
-//     header('Location:' . $url);
-// } else {
-//     print "Acesso permitido!";
-//     $url = './view_carro_adm.php';
-//     header('Location:' . $url);
-// }
-
-// 
+if ($result <> 1) {
+    echo "<h2>Você não tem permissão para acessar este site!</h2>";
+    $url = '../../../Pages/index.php';
+    header('Location:' . $url);
+} else {
+    print "Acesso permitido!";
+    $url = './view_carro_adm.php';
+    header('Location:' . $url);
+} */
 ?>
+
+
+
 
 
 <!DOCTYPE html>
@@ -40,6 +41,71 @@
             background-color: #f2f2f2;
         }
     </style>
+    <script>
+        function editarLinha(pk_placa_carros) {
+            var valueDisplayVisua = 'none';
+            var valueDisplayEdita = 'inline';
+
+            document.querySelectorAll('#linha-' + pk_placa_carros + ' .visualizar').forEach(function(element) {
+                element.style.display = valueDisplayVisua;
+            });
+            document.querySelectorAll('#linha-' + pk_placa_carros + ' .editar').forEach(function(element) {
+                element.style.display = valueDisplayEdita;
+            });
+            document.getElementById('btn-editar-' + pk_placa_carros).style.display = 'none';
+            document.getElementById('btn-salvar-' + pk_placa_carros).style.display = 'inline';
+            document.getElementById('btn-cancelar-' + pk_placa_carros).style.display = 'inline';
+        }
+
+        function cancelarEdicao(pk_placa_carros) {
+            document.querySelectorAll('#linha-' + pk_placa_carros + ' .visualizar').forEach(function(element) {
+                element.style.display = 'inline';
+            });
+            document.querySelectorAll('#linha-' + pk_placa_carros + ' .editar').forEach(function(element) {
+                element.style.display = 'none';
+            });
+            document.getElementById('btn-editar-' + pk_placa_carros).style.display = 'inline';
+            document.getElementById('btn-salvar-' + pk_placa_carros).style.display = 'none';
+            document.getElementById('btn-cancelar-' + pk_placa_carros).style.display = 'none';
+        }
+
+        function salvarEdicao(pk_placa_carros) {
+            var modelo = document.querySelector('#linha-' + pk_placa_carros + ' input[name="modelo"]').value;
+            var ano = document.querySelector('#linha-' + pk_placa_carros + ' input[name="ano"]').value;
+            var marca = document.querySelector('#linha-' + pk_placa_carros + ' input[name="marca"]').value;
+            var disponibilidade = document.querySelector('#linha-' + pk_placa_carros + ' select[name="disponibilidade"]').value;
+
+            var formData = new FormData();
+            formData.append('pk_placa_carros', pk_placa_carros);
+            formData.append('modelo', modelo);
+            formData.append('ano', ano);
+            formData.append('marca', marca);
+            formData.append('disponibilidade', disponibilidade);
+
+            fetch('../../../Controller/salvar_edicao.php', { // Atualize para o caminho correto
+                method: 'POST',
+                body: formData
+            }).then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro HTTP: ' + response.status);
+                }
+                return response.text();
+            }).then(data => {
+                if (data === 'success') {
+                    location.reload();
+
+                    valueDisplayVisua = 'inline';
+                    valueDisplayEdita = 'none';
+
+                } else {
+                    alert('Erro ao salvar a edição! Detalhes: ' + data);
+                }
+            }).catch(error => {
+                console.error('Erro:', error);
+                alert('Erro ao salvar a edição! Detalhes: ' + error.message);
+            });
+        }
+    </script>
 </head>
 
 <body>
@@ -72,38 +138,22 @@
             <th>Marca</th>
             <th>Placa</th>
             <th>Disponibilidade</th>
-            <?php
-            if ($result == 1) {
-                echo '<th>Data_Entrega</th>';
-            }
-            ?>
+            <th>Ações</th>
+            <th>Data_Entrega</th>
         </tr>
-        <!-- PHP code to fetch data from database and display -->
         <?php
-
-
-
-
         include("../../../Connection/conexao_bd.php");
-
-
         include("../../../Controller/functions.php");
+
         try {
             if (isset($_POST['submit'])) {
                 $busca = $_POST['pesquisa'];
-
                 $query = 'SELECT carros.*, aluga.data_entrega_aluga FROM carros INNER JOIN aluga ON carros.pk_placa_carros = aluga.fk_placa_carros WHERE carros.pk_placa_carros = :busca OR carros.disponibilidade_carros = :busca OR carros.modelo_carros = :busca OR carros.marca_carros = :busca';
-
                 $stmt = $conexao->prepare($query);
                 $stmt->bindParam(':busca', $busca);
             } elseif (isset($_POST['submit_select'])) {
-
                 $busca_select = $_POST['pesquisa_select'];
-                var_dump($busca_select);
-
                 $query = 'SELECT carros.*, aluga.data_entrega_aluga FROM carros INNER JOIN aluga ON carros.pk_placa_carros = aluga.fk_placa_carros ORDER BY :pesquisa_select';
-
-
                 $stmt = $conexao->prepare($query);
                 $stmt->bindParam(':pesquisa_select', $busca_select);
             } else {
@@ -114,99 +164,38 @@
             $stmt->execute();
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                echo "<tr>";
+                echo "<tr id='linha-" . htmlspecialchars($row['pk_placa_carros']) . "'>";
+                echo "<td><span class='visualizar'>" . htmlspecialchars($row['modelo_carros']) . "</span><input type='text' class='editar' name='modelo' value='" . htmlspecialchars($row['modelo_carros']) . "' style='display: none;'></td>";
+                echo "<td><span class='visualizar'>" . htmlspecialchars($row['ano_carros']) . "</span><input type='text' class='editar' name='ano' value='" . htmlspecialchars($row['ano_carros']) . "' style='display: none;'></td>";
+                echo "<td><span class='visualizar'>" . htmlspecialchars($row['marca_carros']) . "</span><input type='text' class='editar' name='marca' value='" . htmlspecialchars($row['marca_carros']) . "' style='display: none;'></td>";
+                echo "<td><span class='visualizar'>" . htmlspecialchars($row['pk_placa_carros']) . "</span><input type='text' class='editar' value='" . htmlspecialchars($row['pk_placa_carros']) . "' style='display: none;'></td>";
+
                 echo "<td>";
-                echo "<span class='visualizar'>" . htmlspecialchars($row['modelo_carros']) . "</span>";
-                echo "<input type='text' class='editar' name='modelo' value='" . htmlspecialchars($row['modelo_carros']) . "' style='display: none;'>";
-                echo "</td>";
-                echo "<td>";
-                echo "<span class='visualizar'>" . htmlspecialchars($row['ano_carros']) . "</span>";
-                echo "<input type='text' class='editar' name='ano' value='" . htmlspecialchars($row['ano_carros']) . "' style='display: none;'>";
-                echo "</td>";
-                echo "<td>";
-                echo "<span class='visualizar'>" . htmlspecialchars($row['marca_carros']) . "</span>";
-                echo "<input type='text' class='editar' name='marca' value='" . htmlspecialchars($row['marca_carros']) . "' style='display: none;'>";
-                echo "</td>";
-                echo "<td>";
-                echo "<span class='visualizar'>" . htmlspecialchars($row['pk_placa_carros']) . "</span>";
-                echo "<input type='text' class='editar' value='" . htmlspecialchars($row['pk_placa_carros']) . "' style='display: none;'>";
+                echo "<span class='visualizar'>" . htmlspecialchars($row['disponibilidade_carros']) . "</span>";
+                echo "<select name='disponibilidade' class='editar' style='display: none;'>";
+                echo "<option value='Disponível'" . ($row['disponibilidade_carros'] == 'Disponível' ? ' selected' : '') . ">Disponível</option>";
+                echo "<option value='Indisponível'" . ($row['disponibilidade_carros'] == 'Indisponível' ? ' selected' : '') . ">Indisponível</option>";
+                echo "</select>";
                 echo "</td>";
 
-                if ($row['disponibilidade_carros'] == 'Disponível') {
-                    echo "<td style='background-color:green; width:10%;'>Disponível</td>";
-                } elseif ($row['disponibilidade_carros'] == 'Indisponível') {
-                    echo "<td style='background-color:red; width:10%;'>Indisponível</td>";
-                    if ($result == 1) {
-                        echo "<td>" . htmlspecialchars($row['data_entrega_aluga']) . "</td>";
-                    }
+                
+                echo "<td>";
+                echo '<button id="btn-editar-' . htmlspecialchars($row['pk_placa_carros']) . '" onclick="editarLinha(\'' . htmlspecialchars($row['pk_placa_carros']) . '\')">Editar</button>';
+                echo '<button id="btn-salvar-' . htmlspecialchars($row['pk_placa_carros']) . '" onclick="salvarEdicao(\'' . htmlspecialchars($row['pk_placa_carros']) . '\')" style="display: none;">Salvar Edição</button>';
+                echo '<button id="btn-cancelar-' . htmlspecialchars($row['pk_placa_carros']) . '" onclick="cancelarEdicao(\'' . htmlspecialchars($row['pk_placa_carros']) . '\')" style="display: none;">Sair</button>';
+                echo "</td>";
+                if ($row['disponibilidade_carros'] == 'Indisponível') {
+                    echo "<td>" . htmlspecialchars($row['data_entrega_aluga']) . "</td>";
                 }
-
-                // Botão Editar
-                echo '<td><button class="btn-editar">Editar</button></td>';
-                // Botão Excluir
-
-
-                // Botão Excluir
-                echo "<td><a href='excluir.php?id=" . htmlspecialchars($row['pk_placa_carros']) . "'>Excluir</a></td>";
-
+                
                 echo "</tr>";
             }
         } catch (PDOException $e) {
             echo "Erro: " . $e->getMessage();
         }
         $conexao = null;
-
         ?>
     </table>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-    $(document).ready(function() {
-
-$(".btn-editar").click(function() {
-    var tr = $(this).closest("tr");
-    tr.find(".visualizar").hide();
-    tr.find(".editar").show();
-});
-
-$("tr").dblclick(function() {
-    
-    var placa = $(this).find(".editar").first().val();
-    var modelo = $(this).find(".editar").first().val();
-    var ano = $(this).find(".editar").first().val();
-    var marca = $(this).find(".editar").first().val();
-
-    var newdados = {
-        'modelo': modelo,
-        'ano': ano,
-        'marca': marca
-    };
-
-    editar_carros(placa, newdados); // Corrigido para chamar editar_carros
-});
-});
-
-function editar_carros(placa, newdados) { // Corrigido para nomear a função corretamente
-$.ajax({
-    type: "POST",
-    url: "../../../Controller/functions.php",
-    data: {
-        placa: placa,
-        newdados: newdados
-    },
-    success: function(response) {
-        alert(response);
-    },
-    error: function(xhr, status, error) {
-        alert("Erro ao editar carros: " + error);
-    }
-});
-}
-</script>
-
-
-    </form>
-
 </body>
 
 </html>
-
