@@ -155,39 +155,45 @@
         }
     </style>
 
-    <div class="container">
-        <div class="container-card">
 
-            <?php
+    <div class="container-princ">
 
-            include("../../Connection/conexao_bd.php");
+        <?php
+        include('../Fragments/aluguel_cliente.php');
+        ?>
+        <div class="container">
+            <div class="container-card">
 
-            try {
-                $query = 'SELECT carros.*, categorias_carros.nome_categorias FROM carros INNER JOIN categorias_carros ON carros.fk_id_categorias = categorias_carros.pk_id_categorias  ORDER BY fk_id_categorias;';
-                $stmt = $conexao->query($query);
-                $stmt->execute();
+                <?php
+
+                include("../../Connection/conexao_bd.php");
+
+                try {
+                    $query = 'SELECT carros.*, categorias_carros.nome_categorias FROM carros INNER JOIN categorias_carros ON carros.fk_id_categorias = categorias_carros.pk_id_categorias  ORDER BY fk_id_categorias;';
+                    $stmt = $conexao->query($query);
+                    $stmt->execute();
 
 
-                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
-                    echo '
+                        echo '
                 <div class="card">
                 <div class="titulo-class"> 
                     <h2 class="title-h2">' . htmlspecialchars($row['nome_categorias']) .  '</h2> 
                 </div> 
                 <div class="img">'
-            ?>
+                ?>
 
-                    <?php
-                    //A img_carro esta presente no servidor_img 
-                    $img;
-                    if ($row['img_carros'] <> null || $row['img_carros'] <> "") {
-                        $img = $row['img_carros'];
-                    } else {
-                        $img = "http://localhost:3000/images/no_photo.png";
-                    }
+                        <?php
+                        //A img_carro esta presente no servidor_img 
+                        $img;
+                        if ($row['img_carros'] <> null || $row['img_carros'] <> "") {
+                            $img = $row['img_carros'];
+                        } else {
+                            $img = "http://localhost:3000/images/no_photo.png";
+                        }
 
-                    echo '
+                        echo '
                     <img src=" ' . $img . '" alt=""> 
                 </div>
                 <div class="conteudo">
@@ -197,19 +203,19 @@
                 </div>
                 <div class="row-conteudo"> ' ?>
 
-            <?php
-                    if ($row['disponibilidade_carros'] == 'Disponível') {
-                        echo '
+                <?php
+                        if ($row['disponibilidade_carros'] == 'Disponível') {
+                            echo '
                     <div class="disponibilidade-card" style="border-color: green; background-color:  rgb(72, 255, 0)">
                         <h2>Modelo Disponível </h2>
                     </div> ';
-                    } else {
-                        echo '<div class="disponibilidade-card" style="border-color: red; background-color: rgb(225, 51, 51);">
+                        } else {
+                            echo '<div class="disponibilidade-card" style="border-color: red; background-color: rgb(225, 51, 51);">
                         <h2>Modelo Indisponível </h2>
                     </div> ';
-                    }
+                        }
 
-                    echo '
+                        echo '
                     <div class="link-detail-class">
                         <a href="" class="link-detail">Mostrar detalhes</a>
                     </div>
@@ -218,16 +224,16 @@
                     <input type="submit" class="btn-card-valor" value="Reserve Agora">
                 </div>
             </div>';
+                    }
+                } catch (PDOException $e) {
+                    echo "Erro: " . $e->getMessage();
                 }
-            } catch (PDOException $e) {
-                echo "Erro: " . $e->getMessage();
-            }
-            $conexao = null;
-            ?>
+                $conexao = null;
+                ?>
 
+            </div>
         </div>
     </div>
-
 </body>
 
 </html>

@@ -1,15 +1,11 @@
-<?php 
+<?php
+// Inicia a sessão (se ainda não estiver iniciada)
 session_start();
 
-    if($_POST['logout']) {
-        $logado = $_SESSION['logado'];
-        if($logado){
-        include('functions.php');
-            logout($logado);
-        } else {
-            echo "Usuario não logado";
-        }
-         
-        
-    }
+// Encerra a sessão atual
+session_destroy();
+
+// Redireciona para a página de login ou outra página desejada
+header('Location: ../Pages/index.php'); // Substitua com o URL da página desejada
+exit();
 ?>

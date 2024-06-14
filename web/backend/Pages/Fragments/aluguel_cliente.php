@@ -111,7 +111,7 @@
     </style>
 
 
-    <form action="Controller/verify_aluguel_carro.php" method="post">
+    <form action="../../Controller/verify_aluguel_carro.php" method="post">
 
         <div class="container-aluga">
             <div class="container_local">
@@ -137,11 +137,11 @@
                 <input class="inputs_aluga_btn" type="submit" value="Enviar">
             </div>
             <div class="entrega_outra_cidade">
-                <p>Deseja entregar em outra cidade?</p>
-                <input type="checkbox" name="checkbox_entrega" id="checkbox_entrega">
+                <p <input type="checkbox" name="checkbox_entrega" id="checkbox_entrega">
             </div>
 
-        </div>
+        </div>>Deseja entregar em outra cidade?</p>
+               
     </form>
 
 

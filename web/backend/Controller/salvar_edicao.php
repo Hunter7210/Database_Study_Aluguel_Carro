@@ -5,6 +5,8 @@ include("../Connection/conexao_bd.php");
 include("./functions.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+
     $pk_placa_carros = $_POST['pk_placa_carros'];
     $modelo = $_POST['modelo'];
     $ano = $_POST['ano'];

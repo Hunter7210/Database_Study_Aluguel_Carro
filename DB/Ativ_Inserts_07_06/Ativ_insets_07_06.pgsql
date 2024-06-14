@@ -246,28 +246,7 @@ INSERT INTO feedbacks (data_feedbacks, avaliacao_feedbacks, comentario_feedbacks
 
 
 
-
-
 -- INSERINDO AGORA 40 NOVOS CAMPOS 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 -- Inserindo mais dados na tabela ClientesPF
 INSERT INTO clientes_pf (nome_clientes_pf, sobrenome_clientes_pf, email_clientes_pf, celular_clientes_pf, endereco_clientes_pf, cidade_clientes_pf, estado_clientes_pf, senha_cliente_pf, fk_nivel_acesso) VALUES 
@@ -284,28 +263,8 @@ INSERT INTO clientes_pf (nome_clientes_pf, sobrenome_clientes_pf, email_clientes
 ('Thiago', 'Costa', 'thiago@email.com', '11987654346', 'Rua J, 1010', 'Aracaju', 'SE', 'senha321', 2),
 ('Fernanda', 'Martinez', 'fernanda2@email.com', '11987654347', 'Rua K, 1111', 'Boa Vista', 'RR', 'senha321', 2),
 ('Rafaela', 'Ferreira', 'rafaela@email.com', '11987654348', 'Rua L, 1212', 'Cuiabá', 'MT', 'senha321', 2),
-('Paulo', 'Vieira', 'paulo@email.com', '11987654349', 'Rua M, 1313', 'Palmas', 'TO', 'senha321', 2),
-('Amanda', 'Nogueira', 'amanda@email.com', '11987654350', 'Rua N, 1414', 'Porto Velho', 'RO', 'senha321', 2),
-('Matheus', 'Ramos', 'matheus@email.com', '11987654351', 'Rua O, 1515', 'Macapá', 'AP', 'senha321', 2),
-('Cristina', 'Dias', 'cristina@email.com', '11987654352', 'Rua P, 1616', 'Campo Grande', 'MS', 'senha321', 2),
-('Fernando', 'Barbosa', 'fernando@email.com', '11987654353', 'Rua Q, 1717', 'Rio Branco', 'AC', 'senha321', 2),
-('Juliano', 'Melo', 'juliano@email.com', '11987654354', 'Rua R, 1818', 'Porto Alegre', 'RS', 'senha321', 2),
-('Roberta', 'Oliveira', 'roberta@email.com', '11987654355', 'Rua S, 1919', 'Curitiba', 'PR', 'senha321', 2),
-('Carolina', 'Lima', 'carolina@email.com', '11987654356', 'Rua T, 2020', 'Florianópolis', 'SC', 'senha321', 2),
-('Ricardo', 'Santos', 'ricardo@email.com', '11987654357', 'Rua U, 2121', 'São Paulo', 'SP', 'senha321', 2),
-('Renata', 'Ferreira', 'renata@email.com', '11987654358', 'Rua V, 2222', 'Rio de Janeiro', 'RJ', 'senha321', 2),
-('Felipe', 'Silveira', 'felipe@email.com', '11987654359', 'Rua W, 2323', 'Belo Horizonte', 'MG', 'senha321', 2),
-('Patricia', 'Barros', 'patricia@email.com', '11987654360', 'Rua X, 2424', 'Salvador', 'BA', 'senha321', 2),
-('Luciana', 'Alves', 'luciana@email.com', '11987654361', 'Rua Y, 2525', 'Recife', 'PE', 'senha321', 2),
-('André', 'Martins', 'andre@email.com', '11987654362', 'Rua Z, 2626', 'Fortaleza', 'CE', 'senha321', 2),
-('Jessica', 'Pereira', 'jessica@email.com', '11987654363', 'Rua A, 2727', 'Florianópolis', 'SC', 'senha321', 2),
-('Gabriel', 'Sousa', 'gabriel@email.com', '11987654364', 'Rua B, 2828', 'Brasília', 'DF', 'senha321', 2),
-('Ana', 'Gomes', 'ana@email.com', '11987654365', 'Rua C, 2929', 'Vitória', 'ES', 'senha321', 2),
-('Isabela', 'Rodrigues', 'isabela@email.com', '11987654366', 'Rua D, 3030', 'Manaus', 'AM', 'senha321', 2),
-('Henrique', 'Fernandes', 'henrique@email.com', '11987654367', 'Rua E, 3131', 'Goiânia', 'GO', 'senha321', 2),
-('Patricia', 'Lima', 'patricia2@email.com', '11987654368', 'Rua F, 3232', 'Teresina', '
+('Paulo', 'Vieira', 'paulo@email.com', '11987654349', 'Rua M, 1313', 'Palmas', 'TO', 'senha321', 2)
 
-PI', 'senha321', 2),
 ('Roberto', 'Almeida', 'roberto@email.com', '11987654369', 'Rua G, 3333', 'Natal', 'RN', 'senha321', 2),
 ('Maria', 'Costa', 'maria@email.com', '11987654370', 'Rua H, 3434', 'Aracaju', 'SE', 'senha321', 2),
 ('Marcos', 'Martinez', 'marcos@email.com', '11987654371', 'Rua I, 3535', 'Boa Vista', 'RR', 'senha321', 2),
@@ -347,9 +306,7 @@ INSERT INTO clientes_pj (cnpj_clientes_pj, telefone_clientes_pj, cep_clientes_pj
 ('23456789012345', '1123456724', '01036-000', 'Empresa OO', 'contato@empresaOO.com', 'senha123'),
 ('34567890123456', '1123456725', '01037-000', 'Empresa PP', 'contato@empresaPP.com', 'senha123'),
 ('45678901234567', '1123456726', '01038-000', 'Empresa QQ', 'contato@empresaQQ.com', 'senha123'),
-('56789012345678', '1123456727', '01039-000', 'Empresa RR', 'contato@empresaRR.com', 'senha
-
-123'),
+('56789012345678', '1123456727', '01039-000', 'Empresa RR', 'contato@empresaRR.com', 'senha123'),
 ('67890123456789', '1123456728', '01040-000', 'Empresa SS', 'contato@empresaSS.com', 'senha123'),
 ('78901234567890', '1123456729', '01041-000', 'Empresa TT', 'contato@empresaTT.com', 'senha123'),
 ('89012345678901', '1123456730', '01042-000', 'Empresa UU', 'contato@empresaUU.com', 'senha123'),
@@ -478,3 +435,205 @@ INSERT INTO Manutencoes (data_manutencoes, tipo_manutencoes, custo_manutencoes, 
 ('2024-06-28', 'Troca de Pneus', 1200.00, 'Troca dos quatro pneus'),
 ('2024-06-29', 'Alinhamento', 180.00, 'Alinhamento e balanceamento'),
 ('2024-06-30', 'Freios', 350.00, 'Troca de pastilhas de freio');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+INSERT INTO aluga (valor_total_aluga, data_entrega_aluga, data_retirada_aluga, fk_id_clientes_pf, fk_placa_carros, fk_cnpj_clientes_pj) VALUES 
+(1500.00, '2024-08-01', '2024-07-22', 1, 'AAA1111', '12345678000167'),
+(1600.00, '2024-08-02', '2024-07-23', 2, 'BBB2222', '23456789000178'),
+(1700.00, '2024-08-03', '2024-07-24', 3, 'CCC3333', '34567890000189'),
+(1800.00, '2024-08-04', '2024-07-25', 4, 'DDD4444', '45678900000190'),
+(1900.00, '2024-08-05', '2024-07-26', 5, 'EEE5555', '56789000000101'),
+(2000.00, '2024-08-06', '2024-07-27', 6, 'FFF6666', '12345678000167'),
+(2100.00, '2024-08-07', '2024-07-28', 7, 'GGG7777', '23456789000178'),
+(2200.00, '2024-08-08', '2024-07-29', 8, 'HHH8888', '34567890000189'),
+(2300.00, '2024-08-09', '2024-07-30', 9, 'III9999', '45678900000190'),
+(2400.00, '2024-08-10', '2024-07-31', 10, 'JJJ1010', '56789000000101'),
+(2500.00, '2024-08-11', '2024-08-01', 11, 'KKK1111', '12345678000167'),
+(2600.00, '2024-08-12', '2024-08-02', 12, 'LLL1212', '23456789000178'),
+(2700.00, '2024-08-13', '2024-08-03', 13, 'MMM1313', '34567890000189'),
+(2800.00, '2024-08-14', '2024-08-04', 14, 'NNN1414', '45678900000190'),
+(2900.00, '2024-08-15', '2024-08-05', 15, 'OOO1515', '56789000000101'),
+(3000.00, '2024-08-16', '2024-08-06', 16, 'PPP1616', '12345678000167'),
+(3100.00, '2024-08-17', '2024-08-07', 17, 'QQQ1717', '23456789000178'),
+(3200.00, '2024-08-18', '2024-08-08', 18, 'RRR1818', '34567890000189'),
+(3300.00, '2024-08-19', '2024-08-09', 19, 'SSS1919', '45678900000190'),
+(3400.00, '2024-08-20', '2024-08-10', 20, 'TTT2020', '56789000000101'),
+(3500.00, '2024-08-21', '2024-08-11', 21, 'UUU2121', '12345678000167'),
+(3600.00, '2024-08-22', '2024-08-12', 22, 'VVV2222', '23456789000178'),
+(3700.00, '2024-08-23', '2024-08-13', 23, 'WWW2323', '34567890000189'),
+(3800.00, '2024-08-24', '2024-08-14', 24, 'XXX2424', '45678900000190'),
+(3900.00, '2024-08-25', '2024-08-15', 25, 'YYY2525', '56789000000101'),
+(4000.00, '2024-08-26', '2024-08-16', 26, 'ZZZ2626', '12345678000167'),
+(4100.00, '2024-08-27', '2024-08-17', 27, 'AAA2727', '23456789000178'),
+(4200.00, '2024-08-28', '2024-08-18', 28, 'BBB2828', '34567890000189'),
+(4300.00, '2024-08-29', '2024-08-19', 29, 'CCC2929', '45678900000190'),
+(4400.00, '2024-08-30', '2024-08-20', 30, 'DDD3030', '56789000000101'),
+(4500.00, '2024-08-31', '2024-08-21', 31, 'EEE3131', '12345678000167'),
+(4600.00, '2024-09-01', '2024-08-22', 32, 'FFF3232', '23456789000178'),
+(4700.00, '2024-09-02', '2024-08-23', 33, 'GGG3333', '34567890000189'),
+(4800.00, '2024-09-03', '2024-08-24', 34, 'HHH3434', '45678900000190'),
+(4900.00, '2024-09-04', '2024-08-25', 35, 'III3535', '56789000000101');
+
+
+-- Inserindo mais dados na tabela Recebe
+INSERT INTO Recebe (fk_id_manutencoes, fk_placa_carros) VALUES 
+(11, 'AAA1111'),
+(12, 'BBB2222'),
+(13, 'CCC3333'),
+(14, 'DDD4444'),
+(15, 'EEE5555'),
+(16, 'FFF6666'),
+(17, 'GGG7777'),
+(18, 'HHH8888'),
+(19, 'III9999'),
+(20, 'JJJ1010'),
+(21, 'KKK1111'),
+(22, 'LLL1212'),
+(23, 'MMM1313'),
+(24, 'NNN1414'),
+(25, 'OOO1515'),
+(26, 'PPP1616'),
+(27, 'QQQ1717'),
+(28, 'RRR1818'),
+(29, 'SSS1919'),
+(30, 'TTT2020'),
+(31, 'UUU2121'),
+(32, 'VVV2222'),
+(33, 'WWW2323'),
+(34, 'XXX2424'),
+(35, 'YYY2525'),
+(36, 'ZZZ2626'),
+(37, 'AAA2727'),
+(38, 'BBB2828'),
+(39, 'CCC2929'),
+(40, 'DDD3030'),
+(41, 'EEE3131'),
+(42, 'FFF3232'),
+(43, 'GGG3333'),
+(44, 'HHH3434'),
+(45, 'III3535'),
+(46, 'JJJ3636'),
+(47, 'KKK3737'),
+(48, 'LLL3838'),
+(49, 'MMM3939'),
+(50, 'NNN4040');
+
+-- Inserindo mais dados na tabela Envia
+INSERT INTO Envia (fk_id_feedbacks, fk_id_clientes_pf) VALUES 
+(11, 1),
+(12, 2),
+(13, 3),
+(14, 4),
+(15, 5),
+(16, 6),
+(17, 7),
+(18, 8),
+(19, 9),
+(20, 10),
+(21, 11),
+(22, 12),
+(23, 13),
+(24, 14),
+(25, 15),
+(26, 16),
+(27, 17),
+(28, 18),
+(29, 19),
+(30, 20),
+(31, 21),
+(32, 22),
+(33, 23),
+(34, 24),
+(35, 25),
+(36, 26),
+(37, 27),
+(38, 28),
+(39, 29),
+(40, 30),
+(41, 31),
+(42, 32),
+(43, 33),
+(44, 34),
+(45, 35),
+(46, 36),
+(47, 37),
+(48, 38),
+(49, 39),
+(50, 40);
+
+-- Inserindo mais dados na tabela Realiza
+INSERT INTO Realiza (comprovante_realiza, fk_id_clientes_pf, fk_cnpj_clientes_pj, fk_id_pagamentos) VALUES 
+('Comprovante 11', 1, '12345678000167', 11),
+('Comprovante 12', 2, '23456789000178', 12),
+('Comprovante 13', 3, '34567890000189', 13),
+('Comprovante 14', 4, '45678900000190', 14),
+('Comprovante 15', 5, '56789000000101', 15),
+('Comprovante 16', 6, '12345678000167', 16),
+('Comprovante 17', 7, '23456789000178', 17),
+('Comprovante 18', 8, '34567890000189', 18),
+('Comprovante 19', 9, '45678900000190', 19),
+('Comprovante 20', 10, '56789000000101', 20),
+('Comprovante 21', 11, '12345678000167', 21),
+('Comprovante 22', 12, '23456789000178', 22),
+('Comprovante 23', 13, '34567890000189', 23),
+('Comprovante 24', 14, '45678900000190', 24),
+('Comprovante 25', 15, '56789000000101', 25),
+('Comprovante 26', 16, '12345678000167', 26),
+('Comprovante 27', 17, '23456789000178', 27),
+('Comprovante 28', 18, '34567890000189', 28),
+('Comprovante 29', 19, '45678900000190', 29),
+('Comprovante 30', 20, '56789000000101', 30),
+('Comprovante 31', 21, '12345678000167', 31),
+('Comprovante 32', 22, '23456789000178', 32),
+('Comprovante 33', 23, '34567890000189', 33),
+('Comprovante 34', 24, '45678900000190', 34),
+('Comprovante 35', 25, '56789000000101', 35),
+('Comprovante 36', 26, '12345678000167', 36),
+('Comprovante 37', 27, '23456789000178', 37),
+('Comprovante 38', 28, '34567890000189', 38),
+('Comprovante 39', 29, '45678900000190', 39),
+('Comprovante 40', 30, '56789000000101', 40),
+('Comprovante 41', 31, '12345678000167', 41),
+('Comprovante 42', 32, '23456789000178', 42),
+('Comprovante 43', 33, '34567890000189', 43),
+('Comprovante 44', 34, '45678900000190', 44),
+('Comprovante 45', 35, '56789000000101', 45),
+('Comprovante 46', 36, '12345678000167', 46),
+('Comprovante 47', 37, '23456789000178', 47),
+('Comprovante 48', 38, '34567890000189', 48),
+('Comprovante 49', 39, '45678900000190', 49),
+('Comprovante 50', 40, '56789000000101', 50);

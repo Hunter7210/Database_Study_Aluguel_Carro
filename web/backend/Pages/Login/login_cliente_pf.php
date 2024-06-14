@@ -91,6 +91,9 @@
 </head>
 
 <body>
+    
+<a href="../index.php">
+        <img src="https://img.icons8.com/?size=100&id=pkJ2YVRU0aQW&format=png&color=000000" alt="" width="80px"></a>
     <div class="container">
         <h2>Cadastro de Clientes PF - Etapas</h2>
         <form action="../../../Controller/login_cliente_pf.php" method="post">

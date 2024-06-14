@@ -351,47 +351,31 @@ WHERE marca_carros = 'Honda';
 
 
 select * FROM  aluga;
-select * FROM  carros;
+select * FROM  carros ORDER BY modelo_carros;
 SELECT * FROM clientes_pf;
 SELECT * FROM cargos;
 SELECT * FROM pagamentos;
-
-
-SELECT * FROM clientes_pf;
-
-
-SELECT * FROM clientes_pf;
-
-
-SELECT * FROM clientes_pf;
-
-
-SELECT * FROM clientes_pf;
-
-
-SELECT * FROM clientes_pf;
+SELECT * FROM funcionarios;
 
 
 
 
+pk_id_clientes_pf
 
+nome_clientes_pf
 
+sobrenome_clientes_pf
 
+email_clientes_pf
 
+celular_clientes_pf
 
+endereco_clientes_pf
 
+cidade_clientes_pf
 
+estado_clientes_pf
 
+senha_cliente_pf
 
-
-
-
-
-
-
-
-
-
-
-
-
+fk_nivel_acesso

@@ -42,8 +42,29 @@
 
         <input type="submit" name="submit" value="Cadastrar Carro">
     </form>
+    <a href="../List_Restrito/view_carro_adm.php">Ver todos os carros</a>
 
-    <a href="../DB_Restrito/carros_db.php">View DB</a>
+    
+    <?php
+    if (isset($_GET['status'])) {
+        if ($_GET['status'] == 'success') {
+            echo  '<br> 
+                <div class="container-result-sucess">
+                    <h2>Cadastro realizado com sucesso</h2>
+                </div>';
+        } elseif ($_GET['status'] == 'carro_exists') {
+            echo  '<br>
+                <div class="container-result-failed">
+                    <h2>Email ja existente, tente novamente</h2>
+                </div>';
+        } else {
+            echo  '<br>
+                <div class="container-result-failed">
+                    <h2>Erro ao cadastrar</h2>
+                </div>';
+        }
+    }
+    ?>
 </body>
 
 </html>

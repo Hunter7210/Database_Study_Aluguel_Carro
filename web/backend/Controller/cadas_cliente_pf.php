@@ -64,19 +64,18 @@ if (isset($_POST['submit'])) {
 
             // Executando a consulta e verificando se foi bem-sucedida
             if ($stmt->execute()) {
-                $cadastrado = true;/* 
+                $cadastrado = true;
                 $_SESSION["nome_cliente"] = $_POST['Nome_Cliente'];
                 header("Location:  ../Pages/index.php?status=success");
- */
+
             } else {
-                $cadastrado = false;/* 
-                $_SESSION["nome_cliente"] = ''; */
+                $cadastrado = false;
                 header("Location:  ../Pages/Cadastro/cadastro_cliente_pf.php?status=failed");
             }
 
             echo "<h2> Cliente cadastrado com sucesso</h2>";
         } else {
-
+                    
             echo "<h2> Implementar novos dados falhou </h2>";
         }
         //Fechar a conexão 

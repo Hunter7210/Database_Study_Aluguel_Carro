@@ -28,10 +28,10 @@
     <script>
         function editarLinha(pk_id_funcionarios) {
             var linha = document.querySelector('#linha-' + pk_id_funcionarios);
-            linha.querySelectorAll('.visualizar').forEach(function(element) {
+            linha.querySelectorAll('.visualizar').forEach(function (element) {
                 element.style.display = 'none';
             });
-            linha.querySelectorAll('.editar').forEach(function(element) {
+            linha.querySelectorAll('.editar').forEach(function (element) {
                 element.style.display = 'inline';
             });
             linha.querySelector('.btn-editar').style.display = 'none';
@@ -41,10 +41,10 @@
 
         function cancelarEdicao(pk_id_funcionarios) {
             var linha = document.querySelector('#linha-' + pk_id_funcionarios);
-            linha.querySelectorAll('.visualizar').forEach(function(element) {
+            linha.querySelectorAll('.visualizar').forEach(function (element) {
                 element.style.display = 'inline';
             });
-            linha.querySelectorAll('.editar').forEach(function(element) {
+            linha.querySelectorAll('.editar').forEach(function (element) {
                 element.style.display = 'none';
             });
             linha.querySelector('.btn-editar').style.display = 'inline';
@@ -63,7 +63,7 @@
             formData.append('sobrenome', sobrenome);
             formData.append('data_contratacao', data_contratacao);
 
-            fetch('salvar_edicao_funcionarios.php', { // Atualize para o caminho correto
+            fetch('../../../Controller/salvar_edicao_funcionarios.php', {
                 method: 'POST',
                 body: formData
             }).then(response => {
@@ -82,6 +82,33 @@
                 console.error('Erro:', error);
                 alert('Erro ao salvar a edição! Detalhes: ' + error.message);
             });
+        }
+
+        function excluirFuncionario(pk_id_funcionarios) {
+            if (confirm('Tem certeza que deseja excluir este funcionário?')) {
+                fetch('../../../Controller/excluir_funcionario.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'pk_id_funcionarios=' + encodeURIComponent(pk_id_funcionarios),
+                }).then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro HTTP: ' + response.status);
+                    }
+                    return response.text();
+                }).then(data => {
+                    if (data === 'success') {
+                        alert('Funcionário excluído com sucesso!');
+                        location.reload(); // Recarrega a página para atualizar os dados
+                    } else {
+                        alert('Erro ao excluir o funcionário! Detalhes: ' + data);
+                    }
+                }).catch(error => {
+                    console.error('Erro:', error);
+                    alert('Erro ao excluir o funcionário! Detalhes: ' + error.message);
+                });
+            }
         }
     </script>
 </head>
@@ -109,13 +136,14 @@
                 echo "<td><span class='visualizar'>" . htmlspecialchars($row['nome_funcionarios']) . "</span><input type='text' class='editar' name='nome' value='" . htmlspecialchars($row['nome_funcionarios']) . "' style='display: none;'></td>";
                 echo "<td><span class='visualizar'>" . htmlspecialchars($row['sobrenome_funcionarios']) . "</span><input type='text' class='editar' name='sobrenome' value='" . htmlspecialchars($row['sobrenome_funcionarios']) . "' style='display: none;'></td>";
                 echo "<td><span class='visualizar'>" . htmlspecialchars($row['data_contratacao_funcionarios']) . "</span><input type='date' class='editar' name='data_contratacao' value='" . htmlspecialchars($row['data_contratacao_funcionarios']) . "' style='display: none;'></td>";
-                
+
                 echo "<td>";
                 echo '<button class="btn-editar" onclick="editarLinha(' . htmlspecialchars($row['pk_id_funcionarios']) . ')">Editar</button>';
                 echo '<button class="btn-salvar" onclick="salvarEdicao(' . htmlspecialchars($row['pk_id_funcionarios']) . ')" style="display: none;">Salvar Edição</button>';
                 echo '<button class="btn-cancelar" onclick="cancelarEdicao(' . htmlspecialchars($row['pk_id_funcionarios']) . ')" style="display: none;">Cancelar Edição</button>';
+                echo '<button onclick="excluirFuncionario(' . htmlspecialchars($row['pk_id_funcionarios']) . ')">Excluir</button>';
                 echo "</td>";
-                
+
                 echo "</tr>";
             }
         } catch (PDOException $e) {

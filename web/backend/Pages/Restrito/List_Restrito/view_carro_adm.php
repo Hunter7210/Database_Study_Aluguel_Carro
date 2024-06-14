@@ -1,23 +1,3 @@
-<?php
-
-/* session_start();
-$result = $_SESSION['result_nivel'];
-
-if ($result <> 1) {
-    echo "<h2>Você não tem permissão para acessar este site!</h2>";
-    $url = '../../../Pages/index.php';
-    header('Location:' . $url);
-} else {
-    print "Acesso permitido!";
-    $url = './view_carro_adm.php';
-    header('Location:' . $url);
-} */
-?>
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="pt">
 
@@ -55,6 +35,7 @@ if ($result <> 1) {
             document.getElementById('btn-editar-' + pk_placa_carros).style.display = 'none';
             document.getElementById('btn-salvar-' + pk_placa_carros).style.display = 'inline';
             document.getElementById('btn-cancelar-' + pk_placa_carros).style.display = 'inline';
+            document.getElementById('btn-excluir-' + pk_placa_carros).style.display = 'none'; // Adicionado
         }
 
         function cancelarEdicao(pk_placa_carros) {
@@ -67,6 +48,7 @@ if ($result <> 1) {
             document.getElementById('btn-editar-' + pk_placa_carros).style.display = 'inline';
             document.getElementById('btn-salvar-' + pk_placa_carros).style.display = 'none';
             document.getElementById('btn-cancelar-' + pk_placa_carros).style.display = 'none';
+            document.getElementById('btn-excluir-' + pk_placa_carros).style.display = 'inline'; // Adicionado
         }
 
         function salvarEdicao(pk_placa_carros) {
@@ -82,7 +64,7 @@ if ($result <> 1) {
             formData.append('marca', marca);
             formData.append('disponibilidade', disponibilidade);
 
-            fetch('../../../Controller/salvar_edicao.php', { // Atualize para o caminho correto
+            fetch('../../../Controller/salvar_edicao.php', {
                 method: 'POST',
                 body: formData
             }).then(response => {
@@ -93,10 +75,6 @@ if ($result <> 1) {
             }).then(data => {
                 if (data === 'success') {
                     location.reload();
-
-                    valueDisplayVisua = 'inline';
-                    valueDisplayEdita = 'none';
-
                 } else {
                     alert('Erro ao salvar a edição! Detalhes: ' + data);
                 }
@@ -104,6 +82,32 @@ if ($result <> 1) {
                 console.error('Erro:', error);
                 alert('Erro ao salvar a edição! Detalhes: ' + error.message);
             });
+        }
+
+        function excluirLinha(pk_placa_carros) {
+            if (confirm('Tem certeza que deseja excluir este registro?')) {
+                fetch('../../../Controller/excluir_carro.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'pk_placa_carros=' + encodeURIComponent(pk_placa_carros),
+                }).then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro HTTP: ' + response.status);
+                    }
+                    return response.text();
+                }).then(data => {
+                    if (data === 'success') {
+                        location.reload();
+                    } else {
+                        alert('Erro ao excluir o registro! Detalhes: ' + data);
+                    }
+                }).catch(error => {
+                    console.error('Erro:', error);
+                    alert('Erro ao excluir o registro! Detalhes: ' + error.message);
+                });
+            }
         }
     </script>
 </head>
@@ -120,7 +124,6 @@ if ($result <> 1) {
     </div>
     <div class="pesquisa_carros_select">
         <h3>Pesquise aqui:</h3>
-
         <form action="./view_carro_adm.php" method="post">
             <select name="pesquisa_select" id="pesquisa_select">
                 <option value="pk_placa_carros">Placa</option>
@@ -139,29 +142,29 @@ if ($result <> 1) {
             <th>Placa</th>
             <th>Disponibilidade</th>
             <th>Ações</th>
-            <th>Data_Entrega</th>
+            <!-- <th>Data_Entrega</th> -->
         </tr>
         <?php
         include("../../../Connection/conexao_bd.php");
         include("../../../Controller/functions.php");
 
         try {
+            $query = 'SELECT carros.*, aluga.data_entrega_aluga FROM carros LEFT JOIN aluga ON carros.pk_placa_carros = aluga.fk_placa_carros';
+
             if (isset($_POST['submit'])) {
                 $busca = $_POST['pesquisa'];
-                $query = 'SELECT carros.*, aluga.data_entrega_aluga FROM carros INNER JOIN aluga ON carros.pk_placa_carros = aluga.fk_placa_carros WHERE carros.pk_placa_carros = :busca OR carros.disponibilidade_carros = :busca OR carros.modelo_carros = :busca OR carros.marca_carros = :busca';
+                $query .= ' WHERE carros.pk_placa_carros = :busca OR carros.disponibilidade_carros = :busca OR carros.modelo_carros = :busca OR carros.marca_carros = :busca';
                 $stmt = $conexao->prepare($query);
-                $stmt->bindParam(':busca', $busca);
+                $stmt->bindValue(':busca', $busca);
             } elseif (isset($_POST['submit_select'])) {
                 $busca_select = $_POST['pesquisa_select'];
-                $query = 'SELECT carros.*, aluga.data_entrega_aluga FROM carros INNER JOIN aluga ON carros.pk_placa_carros = aluga.fk_placa_carros ORDER BY :pesquisa_select';
+                $query .= ' ORDER BY ' . $busca_select;
                 $stmt = $conexao->prepare($query);
-                $stmt->bindParam(':pesquisa_select', $busca_select);
             } else {
-                $query = 'SELECT carros.*, aluga.data_entrega_aluga FROM carros INNER JOIN aluga ON carros.pk_placa_carros = aluga.fk_placa_carros';
                 $stmt = $conexao->query($query);
             }
 
-            $stmt->execute();
+            $stmt->execute();   
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 echo "<tr id='linha-" . htmlspecialchars($row['pk_placa_carros']) . "'>";
@@ -178,16 +181,19 @@ if ($result <> 1) {
                 echo "</select>";
                 echo "</td>";
 
-                
                 echo "<td>";
                 echo '<button id="btn-editar-' . htmlspecialchars($row['pk_placa_carros']) . '" onclick="editarLinha(\'' . htmlspecialchars($row['pk_placa_carros']) . '\')">Editar</button>';
                 echo '<button id="btn-salvar-' . htmlspecialchars($row['pk_placa_carros']) . '" onclick="salvarEdicao(\'' . htmlspecialchars($row['pk_placa_carros']) . '\')" style="display: none;">Salvar Edição</button>';
-                echo '<button id="btn-cancelar-' . htmlspecialchars($row['pk_placa_carros']) . '" onclick="cancelarEdicao(\'' . htmlspecialchars($row['pk_placa_carros']) . '\')" style="display: none;">Sair</button>';
+                echo '<button id="btn-cancelar-' . htmlspecialchars($row['pk_placa_carros']) . '" onclick="cancelarEdicao(\'' . htmlspecialchars($row['pk_placa_carros']) . '\')" style="display: none;">Cancelar</button>';
+                echo '<button id="btn-excluir-' . htmlspecialchars($row['pk_placa_carros']) . '" onclick="excluirLinha(\'' . htmlspecialchars($row['pk_placa_carros']) . '\')">Excluir</button>';
                 echo "</td>";
-                if ($row['disponibilidade_carros'] == 'Indisponível') {
+
+                /* if ($row['disponibilidade_carros'] == 'Indisponível') {
                     echo "<td>" . htmlspecialchars($row['data_entrega_aluga']) . "</td>";
+                } else {
+                    echo "<td></td>";
                 }
-                
+                 */
                 echo "</tr>";
             }
         } catch (PDOException $e) {
