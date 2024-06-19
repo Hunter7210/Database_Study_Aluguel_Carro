@@ -5,20 +5,110 @@
     <meta charset="UTF-8">
     <title>Carros Cadastrados</title>
     <style>
-        table,
-        th,
-        td {
-            border: 1px solid black;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1565c0;
+        }
+
+        .pesquisa_carros,
+        .pesquisa_carros_select {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .pesquisa_carros h3,
+        .pesquisa_carros_select h3 {
+            color: #1565c0;
+        }
+
+        .pesquisa_carros input[type="text"],
+        .pesquisa_carros select,
+        .pesquisa_carros input[type="submit"],
+        .pesquisa_carros_select input[type="submit"] {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .pesquisa_carros input[type="submit"],
+        .pesquisa_carros_select input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .pesquisa_carros input[type="submit"]:hover,
+        .pesquisa_carros_select input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        table {
+            width: 100%;
             border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         th,
         td {
-            padding: 10px;
+            padding: 15px;
+            text-align: left;
         }
 
         th {
+            background-color: #1565c0;
+            color: white;
+        }
+
+        tr:nth-child(even) {
             background-color: #f2f2f2;
+        }
+
+        .visualizar {
+            display: inline;
+        }
+
+        .editar {
+            display: none;
+        }
+
+        button {
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button#btn-editar,
+        button#btn-excluir {
+            background-color: #1976d2;
+            color: white;
+        }
+
+        button#btn-salvar {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        button#btn-cancelar {
+            background-color: #f44336;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.8;
         }
     </style>
     <script>
@@ -113,7 +203,7 @@
 </head>
 
 <body>
-    
+
     <h1>Carros Cadastrados</h1>
 
     <div class="pesquisa_carros">
@@ -143,7 +233,6 @@
             <th>Placa</th>
             <th>Disponibilidade</th>
             <th>Ações</th>
-            <!-- <th>Data_Entrega</th> -->
         </tr>
         <?php
         
@@ -190,12 +279,6 @@
                 echo '<button id="btn-excluir-' . htmlspecialchars($row['pk_placa_carros']) . '" onclick="excluirLinha(\'' . htmlspecialchars($row['pk_placa_carros']) . '\')">Excluir</button>';
                 echo "</td>";
 
-                /* if ($row['disponibilidade_carros'] == 'Indisponível') {
-                    echo "<td>" . htmlspecialchars($row['data_entrega_aluga']) . "</td>";
-                } else {
-                    echo "<td></td>";
-                }
-                 */
                 echo "</tr>";
             }
         } catch (PDOException $e) {

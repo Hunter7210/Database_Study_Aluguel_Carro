@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +18,6 @@
         .sidebar {
             width: 250px;
             background-color: #1565c0;
-            /* Azul principal do seu site */
             color: white;
             height: 100vh;
             padding: 20px 0;
@@ -27,7 +25,6 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            /* Centraliza o conteúdo horizontalmente */
         }
 
         .sidebar a,
@@ -37,19 +34,16 @@
             margin: 10px 0;
             padding: 10px;
             width: 80%;
-            /* Define a largura dos inputs */
             text-align: center;
             border: none;
             border-radius: 4px;
             transition: background 0.3s;
             cursor: pointer;
             background-color: #1976d2;
-            /* Cor de fundo dos inputs (tom de azul) */
         }
 
         .sidebar input[type="submit"]:hover {
             background-color: #1e88e5;
-            /* Cor de fundo dos inputs ao passar o mouse (tom mais claro de azul) */
         }
 
         .main-content {
@@ -61,13 +55,89 @@
             margin-bottom: 20px;
         }
 
-        .header h2 {
+        .header h5 {
             margin: 0;
             font-size: 24px;
         }
+
+        .container-result-sucess,
+        .container-result-failed {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .container-result-sucess {
+            background-color: #dff0d8;
+            color: #3c763d;
+        }
+
+        .container-result-failed {
+            background-color: #f2dede;
+            color: #a94442;
+        }
+
+        form.cadastro-carro,
+        form.cadastro-funcionario {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        form.cadastro-carro label,
+        form.cadastro-funcionario label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        form.cadastro-carro input[type="text"],
+        form.cadastro-carro input[type="number"],
+        form.cadastro-carro select,
+        form.cadastro-funcionario input[type="text"],
+        form.cadastro-funcionario input[type="date"],
+        form.cadastro-funcionario select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        form.cadastro-carro input[type="submit"],
+        form.cadastro-funcionario input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        form.cadastro-carro input[type="submit"]:hover,
+        form.cadastro-funcionario input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .cadastro-link {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .cadastro-link:hover {
+            text-decoration: underline;
+        }
     </style>
-
-
 </head>
 
 <body>
@@ -83,11 +153,10 @@
             <input type="submit" value="Ver_DB_Clientes_pf" name="ver_db_clientes_pf">
             <input type="submit" value="Ver_DB_Aluguel" name="ver_db_aluguel">
         </form>
-
     </div>
     <div class="main-content">
         <div class="header">
-            <h2>ESTE É O MEU INDEX DO ADM</h2>
+            <h5>ESTE É O MEU INDEX DO ADM</h5>
         </div>
 
         <?php
@@ -110,8 +179,7 @@
         } else {
             include("./List_Restrito/view_home_adm.php");
         }
-
-        ?> <!-- O conteúdo principal vai aqui -->
+        ?>
     </div>
 </body>
 

@@ -5,15 +5,41 @@
     <meta charset="UTF-8">
     <title>Clientes Cadastrados</title>
     <style>
-        table,
-        th,
-        td {
-            border: 1px solid black;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1565c0;
+        }
+
+        table {
+            width: 100%;
             border-collapse: collapse;
-            padding: 10px;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            overflow-x: auto; /* Adiciona barra de rolagem horizontal */
+        }
+
+        th, td {
+            padding: 10px; /* Reduz o padding para diminuir a largura das colunas */
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            white-space: nowrap; /* Evita que o texto quebre para próxima linha */
         }
 
         th {
+            background-color: #1565c0;
+            color: white;
+        }
+
+        tr:nth-child(even) {
             background-color: #f2f2f2;
         }
 
@@ -23,6 +49,23 @@
 
         .editar {
             display: none;
+        }
+
+        button {
+            padding: 8px; /* Reduz o padding dos botões para melhorar o layout */
+            margin: 3px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-editar, .btn-salvar, .btn-cancelar {
+            background-color: #1976d2;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.8;
         }
     </style>
     <script>

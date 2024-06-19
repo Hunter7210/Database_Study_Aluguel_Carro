@@ -8,10 +8,8 @@
     <style>
         body {
             width: 100%;
-            
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
-            
             color: #333;
             margin: 0;
             padding: 0;
@@ -22,7 +20,6 @@
         }
 
         .search-container {
-            
             max-width: 100%;
             background-color: #fff;
             padding: 20px;
@@ -38,6 +35,7 @@
         .search-form {
             display: flex;
             flex-wrap: wrap;
+            flex-direction: column;
             justify-content: center;
             gap: 10px;
             margin-bottom: 20px;
@@ -81,19 +79,125 @@
             padding: 8px;
             text-align: left;
         }
+
+        .visualizar {
+            display: inline;
+        }
+        
+        .inputs {
+            display: flex;
+            
+
+        }
+
+        .editar {
+            display: none;
+        }
+
+        button {
+            padding: 6px 12px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button#btn-editar,
+        button#btn-excluir {
+            background-color: #1976d2;
+            color: white;
+        }
+
+        button#btn-salvar {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        button#btn-cancelar {
+            background-color: #f44336;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
     </style>
+    <script>
+        function editarLinha() {
+            var valueDisplayVisua = 'none';
+            var valueDisplayEdita = 'inline';
+
+            document.querySelectorAll('.visualizar').forEach(function(element) {
+                element.style.display = valueDisplayVisua;
+            });
+            document.querySelectorAll('.editar').forEach(function(element) {
+                element.style.display = valueDisplayEdita;
+            });
+            document.querySelectorAll('#btn-editar').forEach(function(element) {
+                element.style.display = 'none';
+            });
+            document.querySelectorAll('#btn-salvar').forEach(function(element) {
+                element.style.display = 'inline';
+            });
+            document.querySelectorAll('#btn-cancelar').forEach(function(element) {
+                element.style.display = 'inline';
+            });
+            document.querySelectorAll('#btn-excluir').forEach(function(element) {
+                element.style.display = 'none';
+            });
+        }
+
+        function cancelarEdicao() {
+            document.querySelectorAll('.visualizar').forEach(function(element) {
+                element.style.display = 'inline';
+            });
+            document.querySelectorAll('.editar').forEach(function(element) {
+                element.style.display = 'none';
+            });
+            document.querySelectorAll('#btn-editar').forEach(function(element) {
+                element.style.display = 'inline';
+            });
+            document.querySelectorAll('#btn-salvar').forEach(function(element) {
+                element.style.display = 'none';
+            });
+            document.querySelectorAll('#btn-cancelar').forEach(function(element) {
+                element.style.display = 'none';
+            });
+            document.querySelectorAll('#btn-excluir').forEach(function(element) {
+                element.style.display = 'inline';
+            });
+        }
+
+        function salvarEdicao() {
+            // Implementar lógica de salvamento aqui
+            alert('Implemente a lógica de salvamento conforme necessário.');
+        }
+
+        function excluirLinha() {
+            if (confirm('Tem certeza que deseja excluir este registro?')) {
+                // Implementar lógica de exclusão aqui
+                alert('Implemente a lógica de exclusão conforme necessário.');
+            }
+        }
+    </script>
 </head>
 
 <body>
     <div class="search-container">
         <h2>Busca Avançada</h2>
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="search-form">
-            <label for="cliente">Cliente:</label>
-            <input type="text" id="cliente" name="cliente" placeholder="Nome do cliente">
-            <label for="placa_carro">Placa do Carro:</label>
-            <input type="text" id="placa_carro" name="placa_carro" placeholder="Placa do carro">
-            <label for="manutencao">Manutenção:</label>
-            <input type="text" id="manutencao" name="manutencao" placeholder="Tipo de manutenção">
+            <div class="inputs">
+                <label for="cliente">Cliente:</label>
+                <input type="text" id="cliente" name="cliente" placeholder="Nome do cliente">
+            </div>
+            <div class="inputs">
+                <label for="placa_carro">Placa do Carro:</label>
+                <input type="text" id="placa_carro" name="placa_carro" placeholder="Placa do carro">
+            </div>
+            <div class="inputs">
+                <label for="manutencao">Manutenção:</label>
+                <input type="text" id="manutencao" name="manutencao" placeholder="Tipo de manutenção">
+            </div>
             <input type="submit" value="Buscar" name="buscar">
         </form>
 
@@ -118,19 +222,18 @@
                     $stmt = $conexao->prepare($query);
                     $stmt->bindValue(':busca', '%' . $cliente . '%');
                 } else if (!empty($cliente) && !empty($placa_carro) && empty($manutencao)) {
-                    $query = '
-SELECT carros.*, aluga.data_entrega_aluga, aluga.data_retirada_aluga, clientes_pf.nome_clientes_pf, clientes_pf.endereco_clientes_pf
+                    $query = 'SELECT carros.*, aluga.data_entrega_aluga, aluga.data_retirada_aluga, clientes_pf.nome_clientes_pf, clientes_pf.endereco_clientes_pf
 FROM carros
 INNER JOIN aluga ON carros.pk_placa_carros = aluga.fk_placa_carros
-INNER JOIN clientes_pf ON aluga.fk_id_clientes_pf = clientes_pf.pk_id_clientes_pf WHERE clientes_pf.nome_clientes_pf = :cliente AND carros.pk_placa_carros = :placa;
-';
+INNER JOIN clientes_pf ON aluga.fk_id_clientes_pf = clientes_pf.pk_id_clientes_pf
+WHERE clientes_pf.nome_clientes_pf LIKE :cliente AND carros.pk_placa_carros LIKE :placa';
                     $stmt = $conexao->prepare($query);
                     $stmt->bindValue(':cliente', '%' . $cliente . '%');
                     $stmt->bindValue(':placa', '%' . $placa_carro . '%');
                 } else if (empty($cliente) && !empty($placa_carro) && empty($manutencao)) {
-                    $query = 'SELECT * FROM carros WHERE pk_placa_carros = :busca';
+                    $query = 'SELECT * FROM carros WHERE pk_placa_carros LIKE :busca';
                     $stmt = $conexao->prepare($query);
-                    $stmt->bindValue(':busca', $placa_carro);
+                    $stmt->bindValue(':busca', '%' . $placa_carro . '%');
                 } else if (empty($cliente) && empty($placa_carro) && !empty($manutencao)) {
                     $query = 'SELECT * FROM manutencoes WHERE descricao_manutencoes LIKE :busca';
                     $stmt = $conexao->prepare($query);
@@ -162,11 +265,13 @@ INNER JOIN clientes_pf ON aluga.fk_id_clientes_pf = clientes_pf.pk_id_clientes_p
                         echo '<th>Marca</th>';
                         echo '<th>Placa</th>';
                         echo '<th>Disponibilidade</th>';
+                        echo '<th>Editar/Excluir</th>';
                     } else if (empty($cliente) && empty($placa_carro) && !empty($manutencao)) {
                         echo '<th>Data</th>';
                         echo '<th>Tipo</th>';
                         echo '<th>Custo</th>';
                         echo '<th>Descrição</th>';
+                        echo '<th>Editar/Excluir</th>';
                     }
 
                     echo '</tr>';
@@ -177,25 +282,36 @@ INNER JOIN clientes_pf ON aluga.fk_id_clientes_pf = clientes_pf.pk_id_clientes_p
 
                         // Exibe os dados conforme a consulta realizada
                         if (!empty($cliente) && empty($placa_carro) && empty($manutencao)) {
-                            echo '<td>' . htmlspecialchars($row['nome_clientes_pf']) . '</td>';
-                            echo '<td>' . htmlspecialchars($row['sobrenome_clientes_pf']) . '</td>';
-                            echo '<td>' . htmlspecialchars($row['email_clientes_pf']) . '</td>';
-                            echo '<td>' . htmlspecialchars($row['celular_clientes_pf']) . '</td>';
-                            echo '<td>' . htmlspecialchars($row['endereco_clientes_pf']) . '</td>';
-                            echo '<td>' . htmlspecialchars($row['cidade_clientes_pf']) . '</td>';
-                            echo '<td>' . htmlspecialchars($row['estado_clientes_pf']) . '</td>';
-                            echo '<td> ******* </td>'; // Ajuste conforme sua estrutura de dados
+                            echo '<td class="visualizar">' . htmlspecialchars($row['nome_clientes_pf']) . '</td>';
+                            echo '<td class="visualizar">' . htmlspecialchars($row['sobrenome_clientes_pf']) . '</td>';
+                            echo '<td class="visualizar">' . htmlspecialchars($row['email_clientes_pf']) . '</td>';
+                            echo '<td class="visualizar">' . htmlspecialchars($row['celular_clientes_pf']) . '</td>';
+                            echo '<td class="visualizar">' . htmlspecialchars($row['endereco_clientes_pf']) . '</td>';
+                            echo '<td class="visualizar">' . htmlspecialchars($row['cidade_clientes_pf']) . '</td>';
+                            echo '<td class="visualizar">' . htmlspecialchars($row['estado_clientes_pf']) . '</td>';
+                            echo '<td><button id="btn-editar" onclick="editarLinha()">Editar</button>';
+                            echo '<button id="btn-salvar" onclick="salvarEdicao()" style="display: none;">Salvar</button>';
+                            echo '<button id="btn-cancelar" onclick="cancelarEdicao()" style="display: none;">Cancelar</button>';
+                            echo '<button id="btn-excluir" onclick="excluirLinha()">Excluir</button></td>';
                         } else if (empty($cliente) && !empty($placa_carro) && empty($manutencao)) {
-                            echo '<td>' . htmlspecialchars($row['modelo_carros']) . '</td>';
-                            echo '<td>' . htmlspecialchars($row['ano_carros']) . '</td>';
-                            echo '<td>' . htmlspecialchars($row['marca_carros']) . '</td>';
-                            echo '<td>' . htmlspecialchars($row['pk_placa_carros']) . '</td>';
-                            echo '<td>' . htmlspecialchars($row['disponibilidade_carros']) . '</td>';
+                            echo '<td class="visualizar">' . htmlspecialchars($row['modelo_carros']) . '</td>';
+                            echo '<td class="visualizar">' . htmlspecialchars($row['ano_carros']) . '</td>';
+                            echo '<td class="visualizar">' . htmlspecialchars($row['marca_carros']) . '</td>';
+                            echo '<td class="visualizar">' . htmlspecialchars($row['pk_placa_carros']) . '</td>';
+                            echo '<td class="visualizar">' . htmlspecialchars($row['disponibilidade_carros']) . '</td>';
+                            echo '<td><button id="btn-editar" onclick="editarLinha()">Editar</button>';
+                            echo '<button id="btn-salvar" onclick="salvarEdicao()" style="display: none;">Salvar</button>';
+                            echo '<button id="btn-cancelar" onclick="cancelarEdicao()" style="display: none;">Cancelar</button>';
+                            echo '<button id="btn-excluir" onclick="excluirLinha()">Excluir</button></td>';
                         } else if (empty($cliente) && empty($placa_carro) && !empty($manutencao)) {
-                            echo '<td>' . htmlspecialchars($row['data_manutencoes']) . '</td>';
-                            echo '<td>' . htmlspecialchars($row['tipo_manutencoes']) . '</td>';
-                            echo '<td>' . htmlspecialchars($row['custo_manutencoes']) . '</td>';
-                            echo '<td>' . htmlspecialchars($row['descricao_manutencoes']) . '</td>';
+                            echo '<td class="visualizar">' . htmlspecialchars($row['data_manutencoes']) . '</td>';
+                            echo '<td class="visualizar">' . htmlspecialchars($row['tipo_manutencoes']) . '</td>';
+                            echo '<td class="visualizar">' . htmlspecialchars($row['custo_manutencoes']) . '</td>';
+                            echo '<td class="visualizar">' . htmlspecialchars($row['descricao_manutencoes']) . '</td>';
+                            echo '<td><button id="btn-editar" onclick="editarLinha()">Editar</button>';
+                            echo '<button id="btn-salvar" onclick="salvarEdicao()" style="display: none;">Salvar</button>';
+                            echo '<button id="btn-cancelar" onclick="cancelarEdicao()" style="display: none;">Cancelar</button>';
+                            echo '<button id="btn-excluir" onclick="excluirLinha()">Excluir</button></td>';
                         }
 
                         echo '</tr>';
@@ -207,7 +323,6 @@ INNER JOIN clientes_pf ON aluga.fk_id_clientes_pf = clientes_pf.pk_id_clientes_p
                 }
             }
             ?>
-
         </div>
     </div>
 </body>

@@ -4,9 +4,11 @@
 // usuario
 // senha
 $endereco = 'localhost';
-$banco = 'db_locadora_carros';
+// $banco = 'db_locadora_carros';
+$banco = 'db_locadora_carros_heitor';
 $adm = 'postgres';
-$senha = 'postgres';
+// $senha = 'postgres';
+$senha = 'postgres7210';
 
 try {
     // sgbd:host;port;dbname

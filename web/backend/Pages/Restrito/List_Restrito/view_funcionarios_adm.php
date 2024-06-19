@@ -5,15 +5,37 @@
     <meta charset="UTF-8">
     <title>Funcionários Cadastrados</title>
     <style>
-        table,
-        th,
-        td {
-            border: 1px solid black;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1565c0;
+        }
+
+        table {
+            width: 100%;
             border-collapse: collapse;
-            padding: 10px;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
         }
 
         th {
+            background-color: #1565c0;
+            color: white;
+        }
+
+        tr:nth-child(even) {
             background-color: #f2f2f2;
         }
 
@@ -23,6 +45,33 @@
 
         .editar {
             display: none;
+        }
+
+        button {
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-editar, .btn-excluir {
+            background-color: #1976d2;
+            color: white;
+        }
+
+        .btn-salvar {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .btn-cancelar {
+            background-color: #f44336;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.8;
         }
     </style>
     <script>
@@ -37,6 +86,7 @@
             linha.querySelector('.btn-editar').style.display = 'none';
             linha.querySelector('.btn-salvar').style.display = 'inline';
             linha.querySelector('.btn-cancelar').style.display = 'inline';
+            linha.querySelector('.btn-excluir').style.display = 'none';
         }
 
         function cancelarEdicao(pk_id_funcionarios) {
@@ -50,6 +100,7 @@
             linha.querySelector('.btn-editar').style.display = 'inline';
             linha.querySelector('.btn-salvar').style.display = 'none';
             linha.querySelector('.btn-cancelar').style.display = 'none';
+            linha.querySelector('.btn-excluir').style.display = 'inline';
         }
 
         function salvarEdicao(pk_id_funcionarios) {
@@ -139,9 +190,9 @@
 
                 echo "<td>";
                 echo '<button class="btn-editar" onclick="editarLinha(' . htmlspecialchars($row['pk_id_funcionarios']) . ')">Editar</button>';
-                echo '<button class="btn-salvar" onclick="salvarEdicao(' . htmlspecialchars($row['pk_id_funcionarios']) . ')" style="display: none;">Salvar Edição</button>';
-                echo '<button class="btn-cancelar" onclick="cancelarEdicao(' . htmlspecialchars($row['pk_id_funcionarios']) . ')" style="display: none;">Cancelar Edição</button>';
-                echo '<button onclick="excluirFuncionario(' . htmlspecialchars($row['pk_id_funcionarios']) . ')">Excluir</button>';
+                echo '<button class="btn-salvar" onclick="salvarEdicao(' . htmlspecialchars($row['pk_id_funcionarios']) . ')" style="display: none;">Salvar</button>';
+                echo '<button class="btn-cancelar" onclick="cancelarEdicao(' . htmlspecialchars($row['pk_id_funcionarios']) . ')" style="display: none;">Cancelar</button>';
+                echo '<button class="btn-excluir" onclick="excluirFuncionario(' . htmlspecialchars($row['pk_id_funcionarios']) . ')">Excluir</button>';
                 echo "</td>";
 
                 echo "</tr>";

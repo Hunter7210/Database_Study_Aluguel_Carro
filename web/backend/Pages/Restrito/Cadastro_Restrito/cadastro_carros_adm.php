@@ -9,24 +9,24 @@
 <body>
     <h1>Cadastro de Carro</h1>
 
-    <form action="../../../Controller/cadas_carros.php" method="post">
+    <form class="cadastro-carro" action="../../../Controller/cadas_carros.php" method="post">
         <label for="modelo">Modelo:</label>
-        <input type="text" id="modelo" name="modelo" required><br><br>
+        <input type="text" id="modelo" name="modelo" required><br>
 
         <label for="ano">Ano:</label>
-        <input type="number" id="ano" name="ano" min="1900" max="2100" placeholder="YYYY" required><br><br>
+        <input type="number" id="ano" name="ano" min="1900" max="2100" placeholder="YYYY" required><br>
 
         <label for="marca">Marca:</label>
-        <input type="text" id="marca" name="marca" required><br><br>
+        <input type="text" id="marca" name="marca" required><br>
 
         <label for="placa">Placa:</label>
-        <input type="text" id="placa" name="placa" required><br><br>
+        <input type="text" id="placa" name="placa" required><br>
 
         <label for="disponibilidade">Disponibilidade:</label>
         <select id="disponibilidade" name="disponibilidade" required>
             <option value="Disponível">Disponível</option>
             <option value="Indisponível">Indisponível</option>
-        </select><br><br>
+        </select><br>
 
         <label for="categoria">Categoria:</label>
         <select id="categoria" name="categoria" required>
@@ -38,13 +38,12 @@
             <option value="6">Wagon</option>
             <option value="7">Minivan</option>
             <option value="8">Pick-up</option>
-        </select><br><br>
+        </select><br>
 
         <input type="submit" name="submit" value="Cadastrar Carro">
     </form>
-    <a href="../List_Restrito/view_carro_adm.php">Ver todos os carros</a>
+    <a class="cadastro-link" href="../List_Restrito/view_carro_adm.php">Ver todos os carros</a>
 
-    
     <?php
     if (isset($_GET['status'])) {
         if ($_GET['status'] == 'success') {
@@ -55,7 +54,7 @@
         } elseif ($_GET['status'] == 'carro_exists') {
             echo  '<br>
                 <div class="container-result-failed">
-                    <h2>Email ja existente, tente novamente</h2>
+                    <h2>Carro já existente, tente novamente</h2>
                 </div>';
         } else {
             echo  '<br>
