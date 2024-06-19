@@ -73,7 +73,7 @@
             formData.append('estado_clientes_pf', estado);
             formData.append('senha_cliente_pf', senha);
 
-            fetch('../../../Controller/salvar_edicao_clientes_pf.php', {
+            fetch('../../Controller/salvar_edicao_clientes_pf.php', {
                 method: 'POST',
                 body: formData
             }).then(response => {
@@ -99,7 +99,7 @@
                 var formData = new FormData();
                 formData.append('pk_id_clientes_pf', pk_id_clientes_pf);
 
-                fetch('../../../Controller/excluir_clientes_pf.php', {
+                fetch('../../Controller/excluir_clientes_pf.php', {
                     method: 'POST',
                     body: formData
                 }).then(response => {
@@ -139,7 +139,7 @@
             <th>Ações</th>
         </tr>
         <?php
-        include("../../../Connection/conexao_bd.php");
+        include("../../Connection/conexao_bd.php");
 
         try {
             $query = 'SELECT * FROM clientes_pf';

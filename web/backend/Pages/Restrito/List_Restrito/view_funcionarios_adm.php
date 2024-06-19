@@ -63,7 +63,7 @@
             formData.append('sobrenome', sobrenome);
             formData.append('data_contratacao', data_contratacao);
 
-            fetch('../../../Controller/salvar_edicao_funcionarios.php', {
+            fetch('../../Controller/salvar_edicao_funcionarios.php', {
                 method: 'POST',
                 body: formData
             }).then(response => {
@@ -86,7 +86,7 @@
 
         function excluirFuncionario(pk_id_funcionarios) {
             if (confirm('Tem certeza que deseja excluir este funcionário?')) {
-                fetch('../../../Controller/excluir_funcionario.php', {
+                fetch('../../Controller/excluir_funcionario.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
@@ -124,8 +124,8 @@
             <th>Ações</th>
         </tr>
         <?php
-        include("../../../Connection/conexao_bd.php");
-        include("../../../Controller/functions.php");
+        include("../../Connection/conexao_bd.php");
+        include("../../Controller/functions.php");
 
         try {
             $query = 'SELECT * FROM funcionarios';

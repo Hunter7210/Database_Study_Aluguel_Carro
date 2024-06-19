@@ -100,8 +100,8 @@
             <th>Ações</th>
         </tr>
         <?php
-        include("../../../Connection/conexao_bd.php");
-        include("../../../Controller/functions.php");
+        include("../../Connection/conexao_bd.php");
+        include("../../Controller/functions.php");
 
         try {
             $query = 'SELECT * FROM manutencoes';
@@ -132,3 +132,6 @@
 </body>
 
 </html>
+
+
+                

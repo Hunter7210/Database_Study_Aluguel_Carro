@@ -339,6 +339,7 @@ SELECT * FROM categorias_carros;
 
 SELECT carros.*, aluga.data_entrega_aluga FROM carros INNER JOIN aluga ON carros.pk_placa_carros = aluga.fk_placa_carros ORDER BY pk_placa_carros;
 
+SELECT carros.*, aluga.data_entrega_aluga, aluga.data_retirada_aluga FROM carros INNER JOIN aluga ON carros.pk_placa_carros = aluga.fk_placa_carros;
 
 
 SELECT carros.*, categorias_carros.nome_categorias FROM carros INNER JOIN categorias_carros ON carros.fk_id_categorias = categorias_carros.pk_id_categorias  ORDER BY fk_id_categorias;
@@ -356,26 +357,7 @@ SELECT * FROM clientes_pf;
 SELECT * FROM cargos;
 SELECT * FROM pagamentos;
 SELECT * FROM funcionarios;
+SELECT * FROM manutencoes;
 
 
 
-
-pk_id_clientes_pf
-
-nome_clientes_pf
-
-sobrenome_clientes_pf
-
-email_clientes_pf
-
-celular_clientes_pf
-
-endereco_clientes_pf
-
-cidade_clientes_pf
-
-estado_clientes_pf
-
-senha_cliente_pf
-
-fk_nivel_acesso
