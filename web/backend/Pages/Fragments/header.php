@@ -49,32 +49,54 @@
         </div>
     </div>
 
-    <div class="containerlinks">
+    <form action="./aluguel_cliente.php" class="containerlinks" method="POST">
         <div class="iconsCar">
             <img src="Public/Assets/img/Icons/hatchback.png" alt="">
-            <a href="#">Hatchs</a>
+            <a name="divHatch" href="#">Hatchs</a>
         </div>
 
         <div class="iconsCar">
             <img src="Public/Assets/img/Icons/sedan.png" alt="">
-            <a href="#">Sedãs</a>
+            <a name="divSeda" href="#">Sedãs</a>
         </div>
 
         <div class="iconsCar">
             <img src="Public/Assets/img/Icons/carro-suv.png" alt="">
-            <a href="#">Suv</a>
+            <a name="divSUV" href="#">Suv</a>
         </div>
 
         <div class="iconsCar">
             <img src="Public/Assets/img/Icons/wagon.png" alt="">
-            <a href="#">Peruas</a>
+            <a name="divPerua" href="#">Peruas</a>
         </div>
 
         <div class="iconsCar">
             <img src="Public/Assets/img/Icons/utilitario.png" alt="">
-            <a href="#">Utilitários</a>
+            <a name="divUtili" href="#">Utilitários</a>
         </div>
-    </div>
+    </form>
+
+    <?php
+
+
+    $complement_query = 'WHERE categorias_carros.nome_categorias = :selecao';
+
+    if (isset($_POST['divHatch'])) {
+        $stmt->bindValue(':selecao', $_POST['divHatch']);
+    } else if (isset($_POST['divSeda'])) {
+        $stmt->bindValue(':selecao', $_POST['divSeda']);
+    } else if (isset($_POST['divSUV'])) {
+        $stmt->bindValue(':selecao', $_POST['divSUV']);
+    } else if (isset($_POST['divPerua'])) {
+        $stmt->bindValue(':selecao', $_POST['divPerua']);
+    } else if (isset($_POST['divUtili'])) {
+        $stmt->bindValue(':selecao', $_POST['divUtili']);
+        header('Location : ../List/lista_carros_cliente_pf.php');
+    }
+
+
+    ?>
+
 
 </body>
 

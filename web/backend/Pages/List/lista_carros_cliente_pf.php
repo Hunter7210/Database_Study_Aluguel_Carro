@@ -18,7 +18,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carros para alugar</title>
+    <title>Carros pa ra alugar</title>
 </head>
 
 <body>
@@ -158,9 +158,12 @@
 
     <div class="container-princ">
 
-        <?php
-        include('../Fragments/aluguel_cliente.php');
-        ?>
+        <div class="container-aluguel-filtro">
+            <?php
+            include('../Fragments/aluguel_cliente.php');
+            ?>
+
+        </div>
         <div class="container">
             <div class="container-card">
 
@@ -169,8 +172,36 @@
                 include("../../Connection/conexao_bd.php");
 
                 try {
+
                     $query = 'SELECT carros.*, categorias_carros.nome_categorias FROM carros INNER JOIN categorias_carros ON carros.fk_id_categorias = categorias_carros.pk_id_categorias  ORDER BY fk_id_categorias;';
-                    $stmt = $conexao->query($query);
+
+
+
+                    if (isset($_POST['divHatch'])) {
+                        $query .= 'WHERE categorias_carros.nome_categorias = :selecao';
+                        $stmt = $conexao->prepare($query);
+
+                        $stmt->bindValue(':selecao', $_POST['divHatch']);
+                    } else if (isset($_POST['divSeda'])) {
+                        $query .= 'WHERE categorias_carros.nome_categorias = :selecao';
+                        $stmt = $conexao->prepare($query);
+                        $stmt->bindValue(':selecao', $_POST['divSeda']);
+                    } else if (isset($_POST['divSUV'])) {
+                        $query .= 'WHERE categorias_carros.nome_categorias = :selecao';
+                        $stmt = $conexao->prepare($query);
+                        $stmt->bindValue(':selecao', $_POST['divSUV']);
+                    } else if (isset($_POST['divPerua'])) {
+                        $query .= 'WHERE categorias_carros.nome_categorias = :selecao';
+                        $stmt = $conexao->prepare($query);
+                        $stmt->bindValue(':selecao', $_POST['divPerua']);
+                    } else if (isset($_POST['divUtili'])) {
+                        $query .= 'WHERE categorias_carros.nome_categorias = :selecao';
+                        $stmt = $conexao->prepare($query);
+                        $stmt->bindValue(':selecao', $_POST['divUtili']);
+                    }
+
+
+
                     $stmt->execute();
 
 

@@ -86,8 +86,7 @@
         
         .inputs {
             display: flex;
-            
-
+        
         }
 
         .editar {
