@@ -120,17 +120,13 @@
     </style>
 
 
-    <form action="../../Controller/verify_aluguel_carro.php" method="post">
+    <form action="../../../Controller/verify_aluguel_carro.php" method="post">
         <div class="container">
             <div class="container-aluga">
                 <div class="container_local">
                     <div class="aluga_local">
                         <p>Local de retirada:</p>
-                        <input class="inputs_aluga_local" type="text" placeholder="Digite o local de retirada">
-                    </div>
-                    <div class="aluga_local_entrega">
-                        <p>Local de entrega:</p>
-                        <input class="inputs_aluga_local" type="text" placeholder="Digite o local de entrega">
+                        <input class="inputs_aluga_local" name="cidade_agencias" type="text" placeholder="Digite o local de retirada">
                     </div>
                 </div>
                 <div class="aluga_data_retirada">
@@ -143,7 +139,7 @@
                 </div>
 
                 <div class="aluga_enviar">
-                    <input class="inputs_aluga_btn" type="submit" value="Enviar">
+                    <input class="inputs_aluga_btn" type="submit" name="submit" value="Enviar">
                 </div>
             </div>
     </form>

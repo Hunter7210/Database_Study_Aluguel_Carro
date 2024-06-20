@@ -4,11 +4,9 @@
 // usuario
 // senha
 $endereco = 'localhost';
-// $banco = 'db_locadora_carros';
-$banco = 'db_locadora_carros_heitor';
+$banco = 'db_locadora_carros';
 $adm = 'postgres';
-// $senha = 'postgres';
-$senha = 'postgres7210';
+$senha = 'postgres';
 
 try {
     // sgbd:host;port;dbname
@@ -22,9 +20,8 @@ try {
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
     );
     echo '<script>console.log("Conectado no banco de dados!!!")</script>';
-     
 } catch (PDOException $e) {
-echo '<script>console.log("Falha ao conectar ao banco de dados"")</script>';
-   
+    echo '<script>console.log("Falha ao conectar ao banco de dados"")</script>';
+
     die($e->getMessage());
 }

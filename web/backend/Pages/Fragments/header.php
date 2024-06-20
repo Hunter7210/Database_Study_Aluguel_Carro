@@ -42,61 +42,45 @@
                     </div>
                     <div class="btn-alugar">
                         <img src="Public/Assets/img/Icons/carro-alugado.png" alt="AlugueCarro">
-                        <a href="List/lista_carros_cliente_pf.php">Alugue aqui</a>
+                        <a href="List/lista_carros_cliente_pf.php?filter=all">Alugue aqui</a>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 
-    <form action="./aluguel_cliente.php" class="containerlinks" method="POST">
+    <form action="./header.php" class="containerlinks" method="POST">
         <div class="iconsCar">
             <img src="Public/Assets/img/Icons/hatchback.png" alt="">
-            <a name="divHatch" href="#">Hatchs</a>
+            <a name="divHatch" href="List/lista_carros_cliente_pf.php?filter=hatch">Hatchs</a>
         </div>
 
         <div class="iconsCar">
             <img src="Public/Assets/img/Icons/sedan.png" alt="">
-            <a name="divSeda" href="#">Sedãs</a>
+            <a name="divSeda" href="List/lista_carros_cliente_pf.php?filter=seda">Sedãs</a>
         </div>
 
         <div class="iconsCar">
             <img src="Public/Assets/img/Icons/carro-suv.png" alt="">
-            <a name="divSUV" href="#">Suv</a>
+            <a name="divSUV" href="List/lista_carros_cliente_pf.php?filter=suv">Suv</a>
         </div>
 
         <div class="iconsCar">
             <img src="Public/Assets/img/Icons/wagon.png" alt="">
-            <a name="divPerua" href="#">Peruas</a>
+            <a name="divPerua" href="List/lista_carros_cliente_pf.php?filter=wagon">Peruas</a>
         </div>
 
         <div class="iconsCar">
             <img src="Public/Assets/img/Icons/utilitario.png" alt="">
-            <a name="divUtili" href="#">Utilitários</a>
+            <a name="divUtili" href="List/lista_carros_cliente_pf.php?filter=pickup">Utilitários</a>
         </div>
     </form>
 
-    <?php
-
-
-    $complement_query = 'WHERE categorias_carros.nome_categorias = :selecao';
-
-    if (isset($_POST['divHatch'])) {
-        $stmt->bindValue(':selecao', $_POST['divHatch']);
-    } else if (isset($_POST['divSeda'])) {
-        $stmt->bindValue(':selecao', $_POST['divSeda']);
-    } else if (isset($_POST['divSUV'])) {
-        $stmt->bindValue(':selecao', $_POST['divSUV']);
-    } else if (isset($_POST['divPerua'])) {
-        $stmt->bindValue(':selecao', $_POST['divPerua']);
-    } else if (isset($_POST['divUtili'])) {
-        $stmt->bindValue(':selecao', $_POST['divUtili']);
-        header('Location : ../List/lista_carros_cliente_pf.php');
-    }
-
-
+    <?php 
+        if(isset($_POST['divUtili'])) {
+            header('Location : List/lista_carros_cliente_pf.php?filter=pickup');
+        }
     ?>
-
 
 </body>
 
