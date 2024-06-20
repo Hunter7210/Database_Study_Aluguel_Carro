@@ -215,7 +215,7 @@
     </div>
     <div class="pesquisa_carros_select">
         <h3>Pesquise aqui:</h3>
-        <form action="./view_carro_adm.php" method="post">
+        <form action="./List_Restrito/view_carro_adm.php" method="post">
             <select name="pesquisa_select" id="pesquisa_select">
                 <option value="pk_placa_carros">Placa</option>
                 <option value="disponibilidade_carros">Disponibilidade</option>
