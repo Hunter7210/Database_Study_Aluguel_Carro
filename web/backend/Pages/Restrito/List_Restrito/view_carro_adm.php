@@ -154,7 +154,7 @@
             formData.append('marca', marca);
             formData.append('disponibilidade', disponibilidade);
 
-            fetch('../../Controller/salvar_edicao.php', {
+            fetch('../../../Controller/salvar_edicao.php', {
                 method: 'POST',
                 body: formData
             }).then(response => {
@@ -176,7 +176,7 @@
 
         function excluirLinha(pk_placa_carros) {
             if (confirm('Tem certeza que deseja excluir este registro?')) {
-                fetch('../../Controller/excluir_carro.php', {
+                fetch('../../../Controller/excluir_carro.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
@@ -205,7 +205,7 @@
 <body>
 
     <h1>Carros Cadastrados</h1>
-
+<a href="./List_Restrito/view_carro_adm.php">Acessar os carros</a>
     <div class="pesquisa_carros">
         <h3>Pesquise aqui:</h3>
         <form action="./view_carro_adm.php" method="post">
@@ -236,8 +236,11 @@
         </tr>
         <?php
         
-        include("../../Connection/conexao_bd.php");
-        include("../../Controller/functions.php");
+        include("../../../Connection/conexao_bd.php");
+        include("../../../Controller/functions.php");
+        
+        // include("../../Connection/conexao_bd.php");
+        // include("../../Controller/functions.php");
 
         try {
             $query = 'SELECT carros.* FROM carros';

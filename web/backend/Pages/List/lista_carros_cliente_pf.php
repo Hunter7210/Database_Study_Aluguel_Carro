@@ -235,9 +235,11 @@ session_start();
                                 <a href="" class="link-detail">Mostrar detalhes</a>
                               </div>
                               </div>
-                              <div class="btn-card">
-                                <input type="submit" name="submit" class="btn-card-valor" value="Reserve Agora">
-                              </div>
+                              <form method="POST" action="../Cadastro/cadastro_locacao.php">
+                                <div class="btn-card">
+                                <a href="../Cadastro/cadastro_locacao.php?id=' . $row['pk_placa_carros'] .  '" class="btn-card-valor">Reserve Agora</a>
+                            </div>
+                              </form>
                               </div>';
                     }
                 } catch (PDOException $e) {
